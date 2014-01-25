@@ -23,7 +23,7 @@ class Register_model extends CI_Model {
             'email' => $this->input->post('email'),
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname'),
-            'avatarurl' => realpath(APPPATH . '../avatar/') . $_FILES['userfile']['name'],
+            'avatarurl' => $_FILES['userfile']['name'],
             'url' => $this->input->post('url')
         );
         return $this->db->insert('users', $data);

@@ -1,7 +1,7 @@
 <?php
 
 class Register extends CI_Controller {
-        
+
     function __construct() {
         parent::__construct();
         $this->load->model('register_model');
@@ -21,16 +21,36 @@ class Register extends CI_Controller {
 
     public function checkRegister() {
         if ($_FILES['userfile']['error'] == 0) {
-            $config = array(
+
+            $configUpload = array(
                 'upload_path' => realpath(APPPATH . '../avatar'),
                 'allowed_types' => 'gif|jpg|jpeg|png',
-                'max_size' => '2000',
-            );            
-
-            $this->load->library('upload', $config);
+                'max_size' => 2048,
+            );
+            $this->load->library('upload', $configUpload);
 
             if (!$this->upload->do_upload()) {
                 $data['formRegisterError'] = 'Check your avatar';
+                $data['title'] = "Administrator | Register";
+                $this->load->view('adm/adm_header', $data);
+                $this->load->view('adm/adm_topbar');
+                $this->load->view('adm/register', $data);
+                $this->load->view('adm/adm_footer');
+                return false;
+            }
+
+            $configResize = array(
+                'image_library' => 'gd2',
+                'source_image' => $_FILES['userfile']['tmp_name'],
+                'new_image' => realpath(APPPATH . '../avatar/thumb') . '/' . $_FILES['userfile']['name'],
+                'maintain_ratio' => true,
+                'width' => 150,
+                'height' => 150,
+            );
+            $this->load->library('image_lib', $configResize);
+
+            if (!$this->image_lib->resize()) {
+                $data['formRegisterError'] = 'Error to resize your avatar, please try again.';
                 $data['title'] = "Administrator | Register";
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');

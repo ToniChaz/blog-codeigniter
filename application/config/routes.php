@@ -38,9 +38,14 @@
 |
 */
 
+$route['register/checkRegister'] = 'register/checkRegister';
+$route['register'] = 'register';
+$route['login/checkLogin'] = 'login/checkLogin';
+$route['login'] = 'login';
+$route['adm'] = 'adm';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = "pages/view";
-$route['404_override'] = '';
+$route['404_override'] = 'login';
 
 
 /* End of file routes.php */

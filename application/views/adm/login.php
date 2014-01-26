@@ -18,7 +18,7 @@ if (isset($formLoginError)) {
     <input type="password" name="password" class="form-control" placeholder="Password" required="">
 </div>
 <label class="checkbox">
-    <input type="checkbox" value="remember-me"> Remember me
+    <input type="checkbox" name="remember"> Maintain session
 </label>
 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>

@@ -11,13 +11,13 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="<?php echo base_url(); ?>adm">Dashboard</a></li>
+                <li><a href="<?php echo base_url(); ?>adm">Dashboard</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">My profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>profile">My profile</a></li>
                         <li><a href="<?php echo base_url(); ?>register">Register new</a></li>
                     </ul>
                 </li>

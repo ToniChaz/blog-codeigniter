@@ -2,7 +2,7 @@
 
 class Register extends CI_Controller {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $this->load->model('register_model');
     }
@@ -77,7 +77,13 @@ class Register extends CI_Controller {
             $this->load->view('adm/register', $data);
             $this->load->view('adm/adm_footer');
         } else {
-            redirect('adm');
+            $data['title'] = 'Administrator | Home';
+            $data['message'] = '<strong>Well done!</strong> Registration has been completed successfully. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
+            $data['class'] = 'alert-success';
+            $this->load->view('adm/adm_header', $data);
+            $this->load->view('adm/adm_topbar');
+            $this->load->view('adm/adm_index', $data);
+            $this->load->view('adm/adm_footer');
         }
     }
 
@@ -89,6 +95,7 @@ class Register extends CI_Controller {
         if ($this->register_model->verifyUnicUser($user)) {
             $this->register_model->registerUser();
             $this->session->set_userdata('loginState', true);
+            $this->session->set_userdata('activeUser', $user);
             return true;
         } else {
             $this->form_validation->set_message('verifyUnicUser', 'This user is not available! Please try again..');

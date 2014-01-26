@@ -38,6 +38,7 @@
 |
 */
 
+$route['profile'] = 'profile';
 $route['register/checkRegister'] = 'register/checkRegister';
 $route['register'] = 'register';
 $route['login/checkLogin'] = 'login/checkLogin';

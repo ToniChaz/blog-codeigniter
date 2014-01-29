@@ -5,10 +5,6 @@ body {
     padding-top: 70px;
     padding-bottom: 30px;
 }
-.form-signin {
-    max-width: 350px;
-    margin: 0 auto;
-}
 .alert .glyphicon {
     cursor: pointer;
 }

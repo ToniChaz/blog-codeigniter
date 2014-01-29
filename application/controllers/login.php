@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             if ($this->input->post('formLogin')) {
-                $data['formLoginError'] = validation_errors();
+                $data['alertMessage'] = validation_errors();
             }
             $data['title'] = "Administrator | Login";
             $this->load->view('adm/adm_header', $data);

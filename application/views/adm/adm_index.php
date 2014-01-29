@@ -1,8 +1,8 @@
 <?php
-if (isset($message)) {
+if (isset($alertMessage)) {
     ?>
     <div class="alert <?php echo $class; ?>">
-        <?php echo $message; ?>
+        <?php echo $alertMessage; ?>
     </div>
 <?php } ?>
 <div class="jumbotron">

@@ -30,7 +30,7 @@ class Register extends CI_Controller {
             $this->load->library('upload', $configUpload);
 
             if (!$this->upload->do_upload()) {
-                $data['formRegisterError'] = 'Check your avatar';
+                $data['alertMessage'] = 'Check your avatar';
                 $data['title'] = "Administrator | Register";
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
@@ -50,7 +50,7 @@ class Register extends CI_Controller {
             $this->load->library('image_lib', $configResize);
 
             if (!$this->image_lib->resize()) {
-                $data['formRegisterError'] = 'Error to resize your avatar, please try again.';
+                $data['alertMessage'] = 'Error to resize your avatar, please try again.';
                 $data['title'] = "Administrator | Register";
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
@@ -64,26 +64,33 @@ class Register extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('surname', 'Surname', 'required|callback_verifyUnicUser');
+        $this->form_validation->set_rules('surname', 'Surname', 'required');
 
 
         if ($this->form_validation->run() == false) {
-            if ($this->input->post('formRegister')) {
-                $data['formRegisterError'] = validation_errors();
-            }
+            $data['alertMessage'] = validation_errors();
             $data['title'] = "Administrator | Register";
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/register', $data);
             $this->load->view('adm/adm_footer');
         } else {
-            $data['title'] = 'Administrator | Home';
-            $data['message'] = '<strong>Well done!</strong> Registration has been completed successfully. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
-            $data['class'] = 'alert-success';
-            $this->load->view('adm/adm_header', $data);
-            $this->load->view('adm/adm_topbar');
-            $this->load->view('adm/adm_index', $data);
-            $this->load->view('adm/adm_footer');
+            if($this->verifyUnicUser()){
+                $data['title'] = 'Administrator | Home';
+                $data['alertMessage'] = '<strong>Well done!</strong> Registration has been completed successfully. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
+                $data['class'] = 'alert-success';
+                $this->load->view('adm/adm_header', $data);
+                $this->load->view('adm/adm_topbar');
+                $this->load->view('adm/adm_index', $data);
+                $this->load->view('adm/adm_footer');                
+            }else{
+                $data['alertMessage'] = 'This user is not available! Please try again..';
+                $data['title'] = "Administrator | Register";
+                $this->load->view('adm/adm_header', $data);
+                $this->load->view('adm/adm_topbar');
+                $this->load->view('adm/register', $data);
+                $this->load->view('adm/adm_footer');
+            }
         }
     }
 
@@ -97,8 +104,7 @@ class Register extends CI_Controller {
             $this->session->set_userdata('loginState', true);
             $this->session->set_userdata('activeUser', $user);
             return true;
-        } else {
-            $this->form_validation->set_message('verifyUnicUser', 'This user is not available! Please try again..');
+        } else {            
             return false;
         }
     }

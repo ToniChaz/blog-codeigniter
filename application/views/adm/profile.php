@@ -11,7 +11,7 @@ echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
 ?>
 <div class="row">
     <div class="col-md-3">
-        <img src="<?php echo base_url() . "avatar/thumb/" . $profile["avatarurl"] ?>" alt="<?php echo $profile["name"] . " " . $profile["surname"] ?> | Avatar" class="img-thumbnail">
+        <img src="<?php echo base_url() . "avatar/thumb/" . $profile["avatarurl"] ?>" alt="<?php echo $profile["name"] . " " . $profile["surname"] ?> | Avatar" class="img-thumbnail avatar" />
     </div>
     <div class="col-md-6">
         <h2>Hi <?php echo $profile["name"] . " " . $profile["surname"] ?>, update your profile data.</h2>
@@ -44,7 +44,15 @@ echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
             <label for="URL">URL</label>
             <input type="url" name="url" class="form-control" value="<?php echo $profile["url"] ?>" >
         </div>
-        <button class="btn btn-lg btn-primary pull-right" type="submit">Update</button>
+        <div class="row">
+            <div class="col-md-7"></div>
+            <div class="col-md-3">            
+                <button class="btn btn-lg btn-danger pull-right" id="onDeleteProfile" data-toggle="modal" data-target="#deleteProfile">Delete</button> 
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-lg btn-primary pull-right" type="submit" name="update">Update</button>
+            </div>
+        </div>
     </div>
 </form>
 <div class="col-md-3"></div>

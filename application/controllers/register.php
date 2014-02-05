@@ -101,8 +101,6 @@ class Register extends CI_Controller {
 
         if ($this->register_model->verifyUnicUser($user)) {
             $this->register_model->registerUser();
-            $this->session->set_userdata('loginState', true);
-            $this->session->set_userdata('activeUser', $user);
             return true;
         } else {            
             return false;

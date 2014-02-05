@@ -8,6 +8,11 @@ body {
 .alert .glyphicon {
     cursor: pointer;
 }
+img.avatar {
+    min-width: 150px;
+    min-height: 150px;
+    background: url("../img/adm/gin-tonic.png") no-repeat 0 0;
+}
 
 
 

@@ -38,6 +38,7 @@
 |
 */
 
+$route['profile/deleteProfile'] = 'profile/deleteProfile';
 $route['profile/checkProfileData'] = 'profile/checkProfileData';
 $route['profile'] = 'profile';
 $route['register/checkRegister'] = 'register/checkRegister';

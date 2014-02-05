@@ -48,6 +48,22 @@ class Profile_model extends CI_Model {
         $this->db->where('user', $user);
         $this->db->update('users', $data);
     }
+    
+    public function deleteProfile($user, $password){
+        $this->db->select('user, password');
+        $this->db->from('users');
+        $this->db->where('user', $user);
+        $this->db->where('password', $password);
+        
+        $query = $this->db->get();
+        
+        if($query->num_rows() == 1){
+            $this->db->delete('users', array('user' => $user)); 
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 

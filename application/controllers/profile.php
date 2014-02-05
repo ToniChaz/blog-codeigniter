@@ -1,9 +1,9 @@
 <?php
 
 class Profile extends CI_Controller {
-    
+
     var $data;
-    
+
     public function __construct() {
         parent::__construct();
         $this->load->model('profile_model');
@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
     public function checkProfileData() {
         $data = $this->data;
         if ($_FILES['userfile']['error'] == 0) {
-                        
+
             unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
             unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
 
@@ -84,7 +84,7 @@ class Profile extends CI_Controller {
             $this->load->view('adm/profile', $data);
             $this->load->view('adm/adm_footer');
         } else {
-            if($this->verifyChangeUser()){
+            if ($this->verifyChangeUser()) {
                 $data['profile'] = $this->profile_model->getProfile($this->session->userdata('activeUser'));
                 $data['title'] = 'Administrator | Profile';
                 $data['alertMessage'] = '<strong>Well done!</strong> Your data has been successfully updated. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
@@ -92,8 +92,8 @@ class Profile extends CI_Controller {
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
-                $this->load->view('adm/adm_footer');                
-            }else{
+                $this->load->view('adm/adm_footer');
+            } else {
                 $data['class'] = 'alert-danger';
                 $data['alertMessage'] = '<strong>Oh sheet!</strong> You can not change the user!';
                 $data['title'] = "Administrator | Profile";
@@ -104,6 +104,7 @@ class Profile extends CI_Controller {
             }
         }
     }
+
     public function verifyChangeUser() {
         $user = $this->input->post('user');
 
@@ -112,11 +113,26 @@ class Profile extends CI_Controller {
         if ($this->profile_model->verifyChangeUser($user)) {
             $this->profile_model->updateProfile($user);
             return true;
-        } else {            
+        } else {
             return false;
         }
     }
-
+    
+    public function deleteProfile(){
+        $data = $this->data;
+        $password = $_POST['password'];
+        $user = $this->session->userdata['activeUser'];
+        
+        if ($this->profile_model->deleteProfile($user, $password)) {
+            $this->session->unset_userdata('loginState');
+            $this->session->unset_userdata('activeUser');
+            unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
+            unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+            echo site_url();
+        } else {
+            echo 'fail';
+        }
+    }
 }
 
 ?>

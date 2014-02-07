@@ -23,12 +23,11 @@
                 </li>
             </ul>
             <?php
-            echo form_open(base_url() . 'login/checkLogin')
+            $attributes = array('role' => 'form', 'class' => 'navbar-form navbar-right');
+            echo form_open(base_url() . 'login/checkLogin', $attributes)
             ?>
             <input type="hidden" name="logout" value="logout">
-            <p>
-                <button type="submit" name="submit" class="btn btn-warning pull-right">Sign out</button>
-            </p>
+            <button type="submit" name="submit" class="btn btn-warning">Sign out</button>
             </form>
         </div><!--/.nav-collapse -->
     </div>

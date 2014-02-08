@@ -13,11 +13,10 @@ function _onDeleteUser() {
     $("#modalFooter").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button><button type='button' onClick='onConfirmDeleteUser();' class='btn btn-danger'>Delete</button>");
 }
 function onConfirmDeleteProfile() {
-    var url = document.location.href + "/deleteProfile",
-            password = "password=" + $("#deleteProfilePassword").val();
+    var password = "password=" + $("#deleteProfilePassword").val();
     $.ajax({
         type: "POST",
-        url: url,
+        url: "profile/deleteProfile",
         data: password,
         success: function(XMLHttpRequest) {
             if (XMLHttpRequest === "false") {
@@ -31,12 +30,11 @@ function onConfirmDeleteProfile() {
     return false;
 }
 function onConfirmDeleteUser() {
-    var url = document.location.href + "/deleteUser",
-            safeUser = $("#safeUser").val(),
+    var safeUser = $("#safeUser").val(),
             data = $("#" + currentFormId).serialize();
     $.ajax({
         type: "POST",
-        url: url,
+        url: "users/deleteUser",
         data: data + "&safeUser=" + safeUser,
         success: function(XMLHttpRequest) {
             if (XMLHttpRequest === "false") {

@@ -128,8 +128,10 @@ class Profile extends CI_Controller {
         if ($this->profile_model->deleteProfile($user, $password)) {
             $this->session->unset_userdata('loginState');
             $this->session->unset_userdata('activeUser');
-            unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
-            unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+            if(!empty($data['profile']['avatarurl'])){
+                unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+            }
             return false;
         } else {
             echo 'false';

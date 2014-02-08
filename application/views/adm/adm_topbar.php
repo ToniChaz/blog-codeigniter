@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">LaRutaDelGinTonic</a>
+            <a class="navbar-brand" href="<?php echo base_url(); ?>" title="Visitar web">LaRutaDelGinTonic</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

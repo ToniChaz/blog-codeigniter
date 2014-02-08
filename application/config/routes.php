@@ -38,6 +38,9 @@
 |
 */
 
+$route['users/deleteUser'] = 'users/deleteUser';
+$route['users/updateUser'] = 'users/updateUser';
+$route['users'] = 'users';
 $route['profile/deleteProfile'] = 'profile/deleteProfile';
 $route['profile/checkProfileData'] = 'profile/checkProfileData';
 $route['profile'] = 'profile';

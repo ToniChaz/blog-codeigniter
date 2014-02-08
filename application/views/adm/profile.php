@@ -1,7 +1,8 @@
 <?php
 if (isset($alertMessage)) {
     ?>
-    <div class="alert <?php echo $class; ?>">
+    <div class="alert <?php echo $class; ?> alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <?php echo $alertMessage; ?>
     </div>
     <?php
@@ -45,8 +46,8 @@ echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
             <input type="url" name="url" class="form-control" value="<?php echo $profile["url"] ?>" >
         </div>
         <div class="form-group">                     
-            <button class="btn btn-lg btn-danger" id="onDeleteProfile" data-toggle="modal" data-target="#deleteProfile">Delete</button>
-            <button class="btn btn-lg btn-primary" type="submit" name="update">Update</button>
+            <button class="btn btn-lg btn-danger" id="onDeleteProfile" data-toggle="modal" data-target="#modal">Delete</button>
+            <button class="btn btn-lg btn-success" type="submit" name="update">Update</button>
         </div>
     </div>
 </form>

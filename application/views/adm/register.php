@@ -3,7 +3,8 @@
     <?php
     if (isset($alertMessage)) {
         ?>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Oh sheet!</strong> <?php echo $alertMessage; ?>
         </div>
         <?php
@@ -40,6 +41,13 @@
     <div class="form-group">
         <label for="URL">URL</label>
         <input type="url" name="url" class="form-control" placeholder="http://www.example.com" >
+    </div>
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select name="role" class="form-control">
+            <option value="1">Normal</option>
+            <option value="0">Administrator</option>
+        </select>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>

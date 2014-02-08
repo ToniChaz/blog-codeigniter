@@ -18,7 +18,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?php echo base_url(); ?>profile">My profile</a></li>
+                        <?php if ($this->session->userdata('role') == 0) { ?>
                         <li><a href="<?php echo base_url(); ?>register">Register new</a></li>
+                        <li><a href="<?php echo base_url(); ?>users">All users</a></li>
+                        <?php } ?>
                     </ul>
                 </li>
             </ul>

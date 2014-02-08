@@ -28,9 +28,11 @@ class Profile extends CI_Controller {
     public function checkProfileData() {
         $data = $this->data;
         if ($_FILES['userfile']['error'] == 0) {
-
-            unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
-            unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+            
+            if(!empty($data['profile']['avatarurl'])){
+                unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+            }
 
             $configUpload = array(
                 'upload_path' => realpath(APPPATH . '../avatar'),
@@ -87,7 +89,7 @@ class Profile extends CI_Controller {
             if ($this->verifyChangeUser()) {
                 $data['profile'] = $this->profile_model->getProfile($this->session->userdata('activeUser'));
                 $data['title'] = 'Administrator | Profile';
-                $data['alertMessage'] = '<strong>Well done!</strong> Your data has been successfully updated. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
+                $data['alertMessage'] = '<strong>Well done!</strong> Your data has been successfully updated.';
                 $data['class'] = 'alert-success';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
@@ -128,9 +130,9 @@ class Profile extends CI_Controller {
             $this->session->unset_userdata('activeUser');
             unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
             unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
-            echo site_url();
+            return false;
         } else {
-            echo 'fail';
+            echo 'false';
         }
     }
 }

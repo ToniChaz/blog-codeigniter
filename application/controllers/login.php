@@ -49,9 +49,16 @@ class Login extends CI_Controller {
 //        $password = md5($this->input->post('password'));
         $password = $this->input->post('password');
 
-        if ($this->login_model->login($user, $password)) {
-            $this->session->set_userdata('loginState', true);
-            $this->session->set_userdata('activeUser', $user);
+        $query = $this->login_model->login($user, $password);
+        
+        if ($query->num_rows() == 1) {            
+            $userData = $query->result_array();
+            $sessionUserData = array(
+                'loginState' => true,
+                'activeUser' => $userData[0]['user'],
+                'role' => $userData[0]['role']
+            );            
+            $this->session->set_userdata($sessionUserData);
             return true;
         } else {
             $this->form_validation->set_message('verifyUser', 'Change a few things up and try submitting again..');

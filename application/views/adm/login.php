@@ -5,7 +5,8 @@
     echo form_open(base_url() . 'login/checkLogin', $attributes);
     if (isset($alertMessage)) {
         ?>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Oh sheet!</strong> <?php echo $alertMessage; ?>
         </div>
     <?php } ?>
@@ -19,9 +20,11 @@
         <label for="Password">Password</label>
         <input type="password" name="password" class="form-control" placeholder="Password" required="">
     </div>
-    <label class="checkbox">
-        <input type="checkbox" name="remember"> Maintain session
-    </label>
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="remember"> Maintain session
+        </label>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 </div>

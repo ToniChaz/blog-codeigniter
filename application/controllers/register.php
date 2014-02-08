@@ -8,12 +8,14 @@ class Register extends CI_Controller {
     }
 
     public function index() {
-        if ($this->session->userdata('loginState') == true) {
+        if ($this->session->userdata('role') == 0) {
             $data['title'] = "Administrator | Register";
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/register');
             $this->load->view('adm/adm_footer');
+        } else if($this->session->userdata('loginState') == true){
+            redirect('adm');
         } else {
             redirect('login');
         }
@@ -77,7 +79,7 @@ class Register extends CI_Controller {
         } else {
             if($this->verifyUnicUser()){
                 $data['title'] = 'Administrator | Home';
-                $data['alertMessage'] = '<strong>Well done!</strong> Registration has been completed successfully. <span onClick="closeAlert($(this));" class="glyphicon glyphicon-remove pull-right"></span>';
+                $data['alertMessage'] = '<strong>Well done!</strong> Registration has been completed successfully.';
                 $data['class'] = 'alert-success';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');

@@ -149,9 +149,9 @@ if (!empty($allPosts)) {
         <button type="submit" class="btn btn-lg btn-primary">Create</button>
     </div>
     </form>
-<?php } else { ?>
+<?php } else if (!empty ($activeNameUser)){ ?>
     <div class="jumbotron">
-        <h2>Hello, user!</h2>
+        <h2>Hello, <?php echo $activeNameUser ?>!</h2>
         <p>Currently do not have any post, you dare to write one?</p>
         <p><a class="btn btn-primary" href="<?php echo base_url(); ?>create" role="button">Create post »</a></p>
     </div>

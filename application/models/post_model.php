@@ -47,10 +47,10 @@ class Post_model extends CI_Model {
         $this->db->insert('posts', $data);
     }
     
-    public function updatePost($author, $date, $slug, $status) {        
+    public function updatePost($author, $postuser, $date, $slug, $status) {        
         $data = array(
             'author' => $author,
-            'postuser' => $this->session->userdata('activeUser'),
+            'postuser' => $postuser,
             'date' => $date,
             'text' => $this->input->post('text'),
             'title' => $this->input->post('title'),

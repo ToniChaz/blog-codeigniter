@@ -16,7 +16,7 @@ function onConfirmDeleteProfile() {
     var password = "password=" + $("#deleteProfilePassword").val();
     $.ajax({
         type: "POST",
-        url: "profile/deleteProfile",
+        url: window.location.origin + "/larutadelgintonic/profile/deleteProfile",
         data: password,
         success: function(XMLHttpRequest) {
             if (XMLHttpRequest === "false") {
@@ -34,7 +34,7 @@ function onConfirmDeleteUser() {
             data = $("#" + currentFormId).serialize();
     $.ajax({
         type: "POST",
-        url: "users/deleteUser",
+        url: window.location.origin + "/larutadelgintonic/users/deleteUser",
         data: data + "&safeUser=" + safeUser,
         success: function(XMLHttpRequest) {
             if (XMLHttpRequest === "false") {

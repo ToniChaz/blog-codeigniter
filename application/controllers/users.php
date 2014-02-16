@@ -30,43 +30,51 @@ class Users extends CI_Controller {
         }
     }
 
-    public function updateUser() {        
-        $user = $this->input->post('user');
-        $role = $this->input->post('role');
+    public function updateUser() {
+        if ($this->session->userdata('loginState') == true) {
+            $user = $this->input->post('user');
+            $role = $this->input->post('role');
 
-        if ($this->users_model->updateUser($user, $role)) {
-            $data['allUsers'] = $this->users_model->getUsers();
-            $data['alertMessage'] = '<strong>Oh yeah!</strong> The user has been successfully updated.';
-            $data['class'] = 'alert-success';
-            $data['title'] = 'Administrator | Users';
-            $this->load->view('adm/adm_header', $data);
-            $this->load->view('adm/adm_topbar');
-            $this->load->view('adm/users', $data);
-            $this->load->view('adm/adm_footer');
+            if ($this->users_model->updateUser($user, $role)) {
+                $data['allUsers'] = $this->users_model->getUsers();
+                $data['alertMessage'] = '<strong>Oh yeah!</strong> The user has been successfully updated.';
+                $data['class'] = 'alert-success';
+                $data['title'] = 'Administrator | Users';
+                $this->load->view('adm/adm_header', $data);
+                $this->load->view('adm/adm_topbar');
+                $this->load->view('adm/users', $data);
+                $this->load->view('adm/adm_footer');
+            } else {
+                $data['alertMessage'] = '<strong>Oh sheet!</strong> Something went wrong try again.';
+                $data['class'] = 'alert-danger';
+                $data['title'] = 'Administrator | Users';
+                $this->load->view('adm/adm_header', $data);
+                $this->load->view('adm/adm_topbar');
+                $this->load->view('adm/users', $data);
+                $this->load->view('adm/adm_footer');
+            }
         } else {
-            $data['alertMessage'] = '<strong>Oh sheet!</strong> Something went wrong try again.';
-            $data['class'] = 'alert-danger';
-            $data['title'] = 'Administrator | Users';
-            $this->load->view('adm/adm_header', $data);
-            $this->load->view('adm/adm_topbar');
-            $this->load->view('adm/users', $data);
-            $this->load->view('adm/adm_footer');
+            redirect('login');
         }
     }
 
     public function deleteUser() {
-        $user = $_POST['user'];
-        $safeUser = $_POST['safeUser'];
+        if ($this->session->userdata('loginState') == true) {
+            $user = $_POST['user'];
+            $safeUser = $_POST['safeUser'];
 
-        if ($user == $safeUser) {
-            $query = $this->users_model->deleteUser($user);
-            if(!empty($query[0]['avatarurl'])){
-                unlink(realpath(APPPATH . '../media/avatar') . '/' . $query[0]['avatarurl']);
-                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $query[0]['avatarurl']);
+            if ($user == $safeUser) {
+                $query = $this->users_model->deleteUser($user);
+                if (!empty($query[0]['avatarurl'])) {
+                    unlink(realpath(APPPATH . '../media/avatar') . '/' . $query[0]['avatarurl']);
+                    unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $query[0]['avatarurl']);
+                }
+                echo 'ok';
+            } else {
+                echo 'false';
             }
-            echo 'ok';
         } else {
-            echo 'false';
+            redirect('login');
         }
     }
 

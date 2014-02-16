@@ -9,5 +9,6 @@ if (isset($alertMessage)) {
 <div class="jumbotron">
     <h1>Bienvenido al club!</h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
+    <p>You like to write a post.</p>
+    <p><a href="<?php echo base_url(); ?>create" class="btn btn-primary btn-lg" role="button">Create one »</a></p>
 </div>

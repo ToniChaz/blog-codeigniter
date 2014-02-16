@@ -4,5 +4,10 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>plugin/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/adm-main.js"></script>
+<?php if (isset($js)) { ?>
+    <script type="text/javascript">
+    <?php echo $js; ?>
+    </script>    
+    <?php } ?>
 </body>
 </html>

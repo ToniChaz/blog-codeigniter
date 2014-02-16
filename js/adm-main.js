@@ -1,3 +1,9 @@
+var init = {
+    Post: function() {
+       alert("postJs");
+    }
+};
+window.init = init;
 //Global variables
 var currentFormId;
 

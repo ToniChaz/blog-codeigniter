@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/adm-main.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugin/tinymce/skins/lightgray/skin.min.css">
 </head>
 <body>    
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

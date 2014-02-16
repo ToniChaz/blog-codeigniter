@@ -5,8 +5,8 @@ body {
     padding-top: 70px;
     padding-bottom: 30px;
 }
-table th,
-table td{
+table.table-users th,
+table.table-users td{
     text-align: center;
     vertical-align: middle!important;
 }
@@ -23,7 +23,13 @@ table img.avatar {
     width: 64px;
     height: 64px;
 }
-
+.mceEditor {
+    width: 100%;
+    min-height: 400px;
+}
+.mce-fullscreen {
+    z-index: 9999!important;
+}
 @media (max-width: 767px){
     thead {
         display:none;
@@ -37,23 +43,8 @@ table img.avatar {
     .table-responsive {
         overflow: hidden
     }
-    tbody tr td:nth-child(1):before {
-        content: "Avatar";
-    }
-    tbody tr td:nth-child(2):before {
-        content: "User";
-    }
-    tbody tr td:nth-child(3):before {
-        content: "Name";
-    }
-    tbody tr td:nth-child(4):before {
-        content: "Surname";
-    }
-    tbody tr td:nth-child(5):before {
-        content: "E-mail";
-    }
-    tbody tr td:nth-child(6):before {
-        content: "Role";
+    tbody tr {
+        border: 1px solid #222222;
     }
     tbody tr td:before {
         position: absolute;
@@ -63,6 +54,44 @@ table img.avatar {
         text-align: left;
         white-space: nowrap;
         padding-left: 2%;
+    }
+    /*------------ Users table -------------*/
+    .table-users tbody tr td:nth-child(2):before {
+        content: "Avatar";
+    }
+    .table-users tbody tr td:nth-child(3):before {
+        content: "User";
+    }
+    .table-users tbody tr td:nth-child(4):before {
+        content: "Name";
+    }
+    .table-users tbody tr td:nth-child(5):before {
+        content: "Surname";
+    }
+    .table-users tbody tr td:nth-child(6):before {
+        content: "E-mail";
+    }
+    .table-users tbody tr td:nth-child(7):before {
+        content: "Role";
+    }
+    /*------------ Posts table -------------*/
+    .table-posts tbody tr td:nth-child(2):before {
+        content: "Title";
+    }
+    .table-posts tbody tr td:nth-child(3):before {
+        content: "Date";
+    }
+    .table-posts tbody tr td:nth-child(4):before {
+        content: "Author";
+    }
+    .table-posts tbody tr td:nth-child(5):before {
+        content: "State";
+    }
+    .table-posts tbody tr td:nth-child(6):before {
+        content: "Update";
+    }
+    .table-posts tbody tr td:nth-child(7):before {
+        content: "Delete";
     }
 }
 

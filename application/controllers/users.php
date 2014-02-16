@@ -17,7 +17,7 @@ class Users extends CI_Controller {
 
     public function index() {
         $data = $this->data;
-        if ($this->session->userdata('role') == 0) {
+        if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true) {
             $data['title'] = 'Administrator | Users';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
@@ -30,7 +30,7 @@ class Users extends CI_Controller {
         }
     }
 
-    public function updateUser() {
+    public function updateUser() {        
         $user = $this->input->post('user');
         $role = $this->input->post('role');
 
@@ -61,8 +61,8 @@ class Users extends CI_Controller {
         if ($user == $safeUser) {
             $query = $this->users_model->deleteUser($user);
             if(!empty($query[0]['avatarurl'])){
-                unlink(realpath(APPPATH . '../avatar') . '/' . $query[0]['avatarurl']);
-                unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $query[0]['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar') . '/' . $query[0]['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $query[0]['avatarurl']);
             }
             echo 'ok';
         } else {

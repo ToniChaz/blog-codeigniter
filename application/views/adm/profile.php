@@ -12,7 +12,7 @@ echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
 ?>
 <div class="row">
     <div class="col-md-3">
-        <img src="<?php echo base_url() . "avatar/thumb/" . $profile["avatarurl"] ?>" alt="<?php echo $profile["name"] . " " . $profile["surname"] ?> | Avatar" class="img-thumbnail avatar" />
+        <img src="<?php echo base_url() . "media/avatar/thumb/" . $profile["avatarurl"] ?>" alt="<?php echo $profile["name"] . " " . $profile["surname"] ?> | Avatar" class="img-thumbnail avatar" />
     </div>
     <div class="col-md-6">
         <h2>Hi <?php echo $profile["name"] . " " . $profile["surname"] ?>, update your profile data.</h2>

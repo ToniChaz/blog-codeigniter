@@ -14,7 +14,7 @@ class Login extends CI_Controller {
         if ($this->session->userdata('loginState') == true) {
             redirect('adm');
         } else {
-            $data['title'] = "Administrator | Login";
+            $data['title'] = 'Administrator | Login';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/login', $data);
             $this->load->view('adm/adm_footer');
@@ -35,7 +35,7 @@ class Login extends CI_Controller {
             if ($this->input->post('formLogin')) {
                 $data['alertMessage'] = validation_errors();
             }
-            $data['title'] = "Administrator | Login";
+            $data['title'] = 'Administrator | Login';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/login', $data);
             $this->load->view('adm/adm_footer');

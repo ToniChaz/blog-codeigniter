@@ -38,6 +38,13 @@
 |
 */
 
+$route['post/updatePost'] = 'post/updatePost';
+$route['post/createPost'] = 'post/createPost';
+$route['post/getPosts'] = 'post/getPosts';
+$route['post/edit/(:any)'] = 'post/edit/$1';
+$route['post/(:any)'] = 'post/index/$1';
+$route['create'] = 'post/create';
+$route['post'] = 'post';
 $route['users/deleteUser'] = 'users/deleteUser';
 $route['users/updateUser'] = 'users/updateUser';
 $route['users'] = 'users';

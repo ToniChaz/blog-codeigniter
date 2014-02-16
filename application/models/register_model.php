@@ -27,7 +27,7 @@ class Register_model extends CI_Model {
             'avatarurl' => $_FILES['userfile']['name'],
             'url' => $this->input->post('url')
         );
-        return $this->db->insert('users', $data);
+        $this->db->insert('users', $data);
     }
 
 }

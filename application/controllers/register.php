@@ -8,8 +8,8 @@ class Register extends CI_Controller {
     }
 
     public function index() {
-        if ($this->session->userdata('role') == 0) {
-            $data['title'] = "Administrator | Register";
+        if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true) {
+            $data['title'] = 'Administrator | Register';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/register');
@@ -25,7 +25,7 @@ class Register extends CI_Controller {
         if ($_FILES['userfile']['error'] == 0) {
 
             $configUpload = array(
-                'upload_path' => realpath(APPPATH . '../avatar'),
+                'upload_path' => realpath(APPPATH . '../media/avatar'),
                 'allowed_types' => 'gif|jpg|jpeg|png',
                 'max_size' => 2048,
             );
@@ -33,7 +33,7 @@ class Register extends CI_Controller {
 
             if (!$this->upload->do_upload()) {
                 $data['alertMessage'] = 'Check your avatar';
-                $data['title'] = "Administrator | Register";
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/register', $data);
@@ -44,7 +44,7 @@ class Register extends CI_Controller {
             $configResize = array(
                 'image_library' => 'gd2',
                 'source_image' => $_FILES['userfile']['tmp_name'],
-                'new_image' => realpath(APPPATH . '../avatar/thumb') . '/' . $_FILES['userfile']['name'],
+                'new_image' => realpath(APPPATH . '../media/avatar/thumb') . '/' . $_FILES['userfile']['name'],
                 'maintain_ratio' => true,
                 'width' => 150,
                 'height' => 150,
@@ -53,7 +53,7 @@ class Register extends CI_Controller {
 
             if (!$this->image_lib->resize()) {
                 $data['alertMessage'] = 'Error to resize your avatar, please try again.';
-                $data['title'] = "Administrator | Register";
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/register', $data);
@@ -71,7 +71,7 @@ class Register extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             $data['alertMessage'] = validation_errors();
-            $data['title'] = "Administrator | Register";
+            $data['title'] = 'Administrator | Register';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/register', $data);
@@ -87,7 +87,7 @@ class Register extends CI_Controller {
                 $this->load->view('adm/adm_footer');                
             }else{
                 $data['alertMessage'] = 'This user is not available! Please try again..';
-                $data['title'] = "Administrator | Register";
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/register', $data);

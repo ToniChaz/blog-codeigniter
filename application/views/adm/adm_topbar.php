@@ -13,7 +13,16 @@
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url(); ?>adm">Dashboard</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Post<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo base_url(); ?>post">My posts</a></li>
+                        <li><a href="<?php echo base_url(); ?>create">New post</a></li>
+                        <?php if ($this->session->userdata('role') == 0) { ?>
+                        <li><a href="<?php echo base_url(); ?>post/all">All posts</a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                     <ul class="dropdown-menu">

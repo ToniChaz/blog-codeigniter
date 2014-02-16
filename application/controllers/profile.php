@@ -15,7 +15,7 @@ class Profile extends CI_Controller {
     public function index() {
         if ($this->session->userdata('loginState') == true) {
             $data = $this->data;
-            $data['title'] = "Administrator | My profile";
+            $data['title'] = 'Administrator | My profile';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/profile', $data);
@@ -30,12 +30,12 @@ class Profile extends CI_Controller {
         if ($_FILES['userfile']['error'] == 0) {
             
             if(!empty($data['profile']['avatarurl'])){
-                unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
-                unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $data['profile']['avatarurl']);
             }
 
             $configUpload = array(
-                'upload_path' => realpath(APPPATH . '../avatar'),
+                'upload_path' => realpath(APPPATH . '../media/avatar'),
                 'allowed_types' => 'gif|jpg|jpeg|png',
                 'max_size' => 2048,
             );
@@ -43,10 +43,11 @@ class Profile extends CI_Controller {
 
             if (!$this->upload->do_upload()) {
                 $data['alertMessage'] = 'Check your avatar';
-                $data['title'] = "Administrator | Register";
+                $data['class'] = 'alert-danger';
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
-                $this->load->view('adm/register', $data);
+                $this->load->view('adm/profile', $data);
                 $this->load->view('adm/adm_footer');
                 return false;
             }
@@ -54,7 +55,7 @@ class Profile extends CI_Controller {
             $configResize = array(
                 'image_library' => 'gd2',
                 'source_image' => $_FILES['userfile']['tmp_name'],
-                'new_image' => realpath(APPPATH . '../avatar/thumb') . '/' . $_FILES['userfile']['name'],
+                'new_image' => realpath(APPPATH . '../media/avatar/thumb') . '/' . $_FILES['userfile']['name'],
                 'maintain_ratio' => true,
                 'width' => 150,
                 'height' => 150,
@@ -63,7 +64,7 @@ class Profile extends CI_Controller {
 
             if (!$this->image_lib->resize()) {
                 $data['alertMessage'] = 'Error to resize your avatar, please try again.';
-                $data['title'] = "Administrator | Register";
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/register', $data);
@@ -80,7 +81,7 @@ class Profile extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             $data['alertMessage'] = validation_errors();
-            $data['title'] = "Administrator | Profile";
+            $data['title'] = 'Administrator | Profile';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/profile', $data);
@@ -98,7 +99,7 @@ class Profile extends CI_Controller {
             } else {
                 $data['class'] = 'alert-danger';
                 $data['alertMessage'] = '<strong>Oh sheet!</strong> You can not change the user!';
-                $data['title'] = "Administrator | Profile";
+                $data['title'] = 'Administrator | Profile';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
@@ -129,8 +130,8 @@ class Profile extends CI_Controller {
             $this->session->unset_userdata('loginState');
             $this->session->unset_userdata('activeUser');
             if(!empty($data['profile']['avatarurl'])){
-                unlink(realpath(APPPATH . '../avatar') . '/' . $data['profile']['avatarurl']);
-                unlink(realpath(APPPATH . '../avatar/thumb') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar') . '/' . $data['profile']['avatarurl']);
+                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $data['profile']['avatarurl']);
             }
             return false;
         } else {

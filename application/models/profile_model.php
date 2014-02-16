@@ -20,18 +20,7 @@ class Profile_model extends CI_Model {
             return false;
         }
     }
-    public function registerUser() {
-        $data = array(
-            'user' => $this->input->post('user'),
-            'password' => $this->input->post('password'),
-            'email' => $this->input->post('email'),
-            'name' => $this->input->post('name'),
-            'surname' => $this->input->post('surname'),
-            'avatarurl' => $_FILES['userfile']['name'],
-            'url' => $this->input->post('url')
-        );
-        return $this->db->insert('users', $data);
-    }
+    
     public function updateProfile($user) {        
         $data = array(
             'password' => $this->input->post('password'),

@@ -7,7 +7,7 @@ if (isset($alertMessage)) {
     </div>
 <?php } ?>
 <div class="table-responsive">
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-users">
     <thead>
         <tr>
           <th>Avatar</th>
@@ -27,7 +27,7 @@ if (isset($alertMessage)) {
             $attributes = array('role' => 'form', 'id' => 'form' . $user->id);
             echo form_open_multipart(base_url() . 'users/updateUser', $attributes);
             ?>
-            <td><img src="<?php echo base_url() . "avatar/thumb/" . $user->avatarurl ?>" alt="<?php echo $user->name . " " . $user->surname ?> | Avatar" class="img-thumbnail avatar" /></td>
+            <td><img src="<?php echo base_url() . "media/avatar/thumb/" . $user->avatarurl ?>" alt="<?php echo $user->name . " " . $user->surname ?> | Avatar" class="img-thumbnail avatar" /></td>
             <td><input class="form-control userName" value="<?php echo $user->user; ?>" name="user" type="text" readonly /></td>
             <td><?php echo $user->name; ?></td>
             <td><?php echo $user->surname; ?></td>

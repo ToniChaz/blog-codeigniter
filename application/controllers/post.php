@@ -74,7 +74,12 @@ class Post extends CI_Controller {
             return $activeUser;
         }
     }
-
+    
+    public function returnPostUser($id) {
+        $currentPost = $this->post_model->getSinglePost($id);
+        return $currentPost->author;
+    }
+    
     public function slugGenerator($str) {
         $search = array(
             'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç',
@@ -148,7 +153,11 @@ class Post extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             $data['alertMessage'] = validation_errors();
-            $data['createPost'] = $this->returnActiveUser($data['allUsers']);
+            if($this->session->userdata('role') == 0){
+                $data['createPost'] = $this->returnPostUser($this->input->post('id'));
+            }else{
+                $data['createPost'] = $this->returnActiveUser($data['allUsers']);
+            }
             $data['class'] = 'alert-danger';
             $data['title'] = 'Administrator | Edit';
             $this->load->view('adm/adm_header', $data);
@@ -156,7 +165,11 @@ class Post extends CI_Controller {
             $this->load->view('adm/post', $data);
             $this->load->view('adm/adm_footer');
         } else {
-            $author = $this->returnActiveUser($data['allUsers']);
+            if($this->session->userdata('role') == 0){
+                $author = $this->returnPostUser($this->input->post('id'));
+            }else{
+                $author = $this->returnActiveUser($data['allUsers']);
+            }            
 
             if ($this->input->post('date') == '') {
                 $date = date("Y-m-d");

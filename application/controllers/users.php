@@ -23,10 +23,11 @@ class Users extends CI_Controller {
         $data = $this->data;
         if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true) {
             $data['title'] = 'Administrator | Users';
+            $data['js'] = 'Main.User();';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/users', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else if ($this->session->userdata('loginState') == true) {
             redirect('adm');
         }
@@ -35,6 +36,7 @@ class Users extends CI_Controller {
     public function updateUser() {
         $user = $this->input->post('user');
         $role = $this->input->post('role');
+        $data['js'] = 'Main.User();';
 
         if ($this->users_model->updateUser($user, $role)) {
             $data['allUsers'] = $this->users_model->getUsers();
@@ -44,7 +46,7 @@ class Users extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/users', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else {
             $data['alertMessage'] = '<strong>Oh sheet!</strong> Something went wrong try again.';
             $data['class'] = 'alert-danger';
@@ -52,7 +54,7 @@ class Users extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/users', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         }
     }
 

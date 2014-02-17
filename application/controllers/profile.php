@@ -19,15 +19,17 @@ class Profile extends CI_Controller {
     public function index() {
         $data = $this->data;
         $data['title'] = 'Administrator | My profile';
+        $data['js'] = 'Main.Profile();';
         $this->load->view('adm/adm_header', $data);
         $this->load->view('adm/adm_topbar');
         $this->load->view('adm/profile', $data);
-        $this->load->view('adm/adm_footer');
+        $this->load->view('adm/adm_footer', $data);
     }
 
     public function checkProfileData() {
         $data = $this->data;
-
+        $data['js'] = 'Main.Profile();';
+        
         if ($_FILES['userfile']['error'] == 0) {
 
             if (!empty($data['profile']['avatarurl'])) {
@@ -45,11 +47,11 @@ class Profile extends CI_Controller {
             if (!$this->upload->do_upload()) {
                 $data['alertMessage'] = 'Check your avatar';
                 $data['class'] = 'alert-danger';
-                $data['title'] = 'Administrator | Register';
+                $data['title'] = 'Administrator | Register';                
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
-                $this->load->view('adm/adm_footer');
+                $this->load->view('adm/adm_footer', $data);
                 return false;
             }
 
@@ -69,7 +71,7 @@ class Profile extends CI_Controller {
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/register', $data);
-                $this->load->view('adm/adm_footer');
+                $this->load->view('adm/adm_footer', $data);
                 return false;
             }
         }
@@ -86,7 +88,7 @@ class Profile extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/profile', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else {
             if ($this->verifyChangeUser()) {
                 $data['profile'] = $this->profile_model->getProfile($this->session->userdata('activeUser'));
@@ -96,7 +98,7 @@ class Profile extends CI_Controller {
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
-                $this->load->view('adm/adm_footer');
+                $this->load->view('adm/adm_footer', $data);
             } else {
                 $data['class'] = 'alert-danger';
                 $data['alertMessage'] = '<strong>Oh sheet!</strong> You can not change the user!';
@@ -104,7 +106,7 @@ class Profile extends CI_Controller {
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
-                $this->load->view('adm/adm_footer');
+                $this->load->view('adm/adm_footer', $data);
             }
         }
     }

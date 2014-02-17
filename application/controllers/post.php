@@ -41,6 +41,7 @@ class Post extends CI_Controller {
 
     public function edit($id = null, $message = '') {
         $data['singlePost'] = $this->post_model->getSinglePost($id);
+        $data['js'] = 'Main.Post();';
 
         if (empty($data['singlePost'])) {
             show_404();
@@ -57,19 +58,20 @@ class Post extends CI_Controller {
         $this->load->view('adm/adm_header', $data);
         $this->load->view('adm/adm_topbar');
         $this->load->view('adm/post', $data);
-        $this->load->view('adm/adm_footer');
+        $this->load->view('adm/adm_footer', $data);
     }
 
     public function create() {
         $data = $this->data;
-
+        $data['js'] = 'Main.Post();';
+        
         $data['createPost'] = $this->returnActiveUser($data['allUsers']);
 
         $data['title'] = 'Administrator | Create';
         $this->load->view('adm/adm_header', $data);
         $this->load->view('adm/adm_topbar');
         $this->load->view('adm/post', $data);
-        $this->load->view('adm/adm_footer');
+        $this->load->view('adm/adm_footer', $data);
     }
 
     public function returnActiveUser($allUsers) {
@@ -122,6 +124,8 @@ class Post extends CI_Controller {
 
     public function createPost() {
         $data = $this->data;
+        $data['js'] = 'Main.Post();';
+        
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('slug', 'Url', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -134,7 +138,7 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else {
             $author = $this->returnActiveUser($data['allUsers']);
 
@@ -158,6 +162,8 @@ class Post extends CI_Controller {
 
     public function updatePost() {
         $data = $this->data;
+        $data['js'] = 'Main.Post();';
+        
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('slug', 'Url', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -174,7 +180,7 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else {
             if ($this->session->userdata('role') == 0) {
                 $author = $this->returnAuthorUser($this->input->post('id'));

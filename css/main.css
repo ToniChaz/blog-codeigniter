@@ -87,21 +87,55 @@ input, select {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+html, body {
+    font-family: Arial, Helvetica, Verdana;
+}
+/* Header */
+header {
+    height: 80px;
+}
+.container {
+    margin: 0 auto;
+    width: 1080px;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.logo {
+    float: left;
+    font-size: 34px;
+}
+.description {
+    float: left;
+    font-size: 20px;
+    clear: left;
+    margin-left: 136px;
+}
+nav.secondary {
+    float: right;
+}
+/* Menu */
+nav.primary {
+    text-align: center;
+    clear: both;
+    margin: 20px auto;
+}
+nav.primary a {
+    text-decoration: none;
+    color:#000;
+    padding: 5px 10px;
+}
+nav.primary a:hover, nav.primary a.active {
+    text-decoration: underline;
+}
+/* Section */
+section {
+    margin: 50px auto;
+}
+/* Footer */
+footer p {
+    margin: 15px 15px 0;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+}

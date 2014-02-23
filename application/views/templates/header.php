@@ -16,6 +16,15 @@
         <link rel="stylesheet" href="<?php echo base_url() ?>css/main.css">
     </head>
     <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container">
+            <header>
+                <h1 class="logo">La Ruta del Gin Tonic</h1>
+                <nav class="menu secondary">
+                    <a href="<?php echo base_url() ?>quienes-somos">Quienes somos</a>
+                    <a href="<?php echo base_url() ?>contacto">Contacto</a>
+                </nav>
+                <h2 class="description">Mucho más que rutas</h2>
+            </header>    

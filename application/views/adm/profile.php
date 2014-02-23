@@ -46,7 +46,7 @@ echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
             <input type="url" name="url" class="form-control" value="<?php echo $profile["url"] ?>" >
         </div>
         <div class="form-group">                     
-            <button class="btn btn-lg btn-danger" id="onDeleteProfile" data-toggle="modal" data-target="#modal">Delete</button>
+            <button class="btn btn-lg btn-danger" id="onDeleteProfile" data-id="<?php echo $profile["id"]; ?>" data-toggle="modal" data-target="#modal">Delete</button>
             <button class="btn btn-lg btn-success" type="submit" name="update">Update</button>
         </div>
     </div>

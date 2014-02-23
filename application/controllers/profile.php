@@ -19,7 +19,7 @@ class Profile extends CI_Controller {
     public function index() {
         $data = $this->data;
         $data['title'] = 'Administrator | My profile';
-        $data['js'] = 'Main.Profile();';
+        $data['js'] = 'Main.profile();';
         $this->load->view('adm/adm_header', $data);
         $this->load->view('adm/adm_topbar');
         $this->load->view('adm/profile', $data);
@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
 
     public function checkProfileData() {
         $data = $this->data;
-        $data['js'] = 'Main.Profile();';
+        $data['js'] = 'Main.profile();';
         
         if ($_FILES['userfile']['error'] == 0) {
 
@@ -126,7 +126,7 @@ class Profile extends CI_Controller {
 
     public function deleteProfile() {
         $data = $this->data;
-        $password = $_POST['password'];
+        $password = $_POST['safeInput'];
         $user = $this->session->userdata['activeUser'];
 
         if ($this->profile_model->deleteProfile($user, $password)) {

@@ -63,6 +63,10 @@ class Post_model extends CI_Model {
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('posts', $data);
     }
+    
+    public function deletePost($id){
+        $this->db->delete('posts', array('id' => $id));
+    }
 
 }
 

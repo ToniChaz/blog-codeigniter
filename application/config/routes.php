@@ -38,6 +38,7 @@
 |
 */
 
+$route['post/deletePost'] = 'post/deletePost';
 $route['post/updatePost'] = 'post/updatePost';
 $route['post/createPost'] = 'post/createPost';
 $route['post/getPosts'] = 'post/getPosts';

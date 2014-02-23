@@ -18,15 +18,17 @@ class Post extends CI_Controller {
     }
 
     public function index($filter = null) {
+        $data['js'] = 'Main.deletePost();';
+
         if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true && $filter == 'all') {
             $data['allPosts'] = $this->post_model->getPosts();
 
             $data['title'] = 'Administrator | Posts';
-            
+
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         } else if ($this->session->userdata('loginState') == true && $filter == null) {
             $data = $this->data;
             $data['allPosts'] = $this->post_model->getPosts($this->session->userdata('activeUser'));
@@ -35,13 +37,13 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
-            $this->load->view('adm/adm_footer');
+            $this->load->view('adm/adm_footer', $data);
         }
     }
 
     public function edit($id = null, $message = '') {
         $data['singlePost'] = $this->post_model->getSinglePost($id);
-        $data['js'] = 'Main.Post();';
+        $data['js'] = 'Main.post();';
 
         if (empty($data['singlePost'])) {
             show_404();
@@ -63,8 +65,8 @@ class Post extends CI_Controller {
 
     public function create() {
         $data = $this->data;
-        $data['js'] = 'Main.Post();';
-        
+        $data['js'] = 'Main.post();';
+
         $data['createPost'] = $this->returnActiveUser($data['allUsers']);
 
         $data['title'] = 'Administrator | Create';
@@ -124,8 +126,8 @@ class Post extends CI_Controller {
 
     public function createPost() {
         $data = $this->data;
-        $data['js'] = 'Main.Post();';
-        
+        $data['js'] = 'Main.post();';
+
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('slug', 'Url', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -162,8 +164,8 @@ class Post extends CI_Controller {
 
     public function updatePost() {
         $data = $this->data;
-        $data['js'] = 'Main.Post();';
-        
+        $data['js'] = 'Main.post();';
+
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('slug', 'Url', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -206,6 +208,20 @@ class Post extends CI_Controller {
             $this->post_model->updatePost($author, $postuser, $date, $slug, $status);
 
             $this->edit($this->input->post('id'), 'update');
+        }
+    }
+
+    public function deletePost() {
+        $id = $_POST['id'];
+        $safeInput = $_POST['safeInput'];
+
+        $postToDelete = $this->post_model->getSinglePost($id);
+
+        if ($postToDelete->id == $id && $this->session->userdata('activeUser') == $safeInput) {
+            $this->post_model->deletePost($id);
+            echo 'ok';
+        } else {
+            echo 'false';
         }
     }
 

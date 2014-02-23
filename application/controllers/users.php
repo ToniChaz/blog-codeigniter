@@ -23,7 +23,7 @@ class Users extends CI_Controller {
         $data = $this->data;
         if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true) {
             $data['title'] = 'Administrator | Users';
-            $data['js'] = 'Main.User();';
+            $data['js'] = 'Main.user();';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/users', $data);
@@ -36,7 +36,7 @@ class Users extends CI_Controller {
     public function updateUser() {
         $user = $this->input->post('user');
         $role = $this->input->post('role');
-        $data['js'] = 'Main.User();';
+        $data['js'] = 'Main.user();';
 
         if ($this->users_model->updateUser($user, $role)) {
             $data['allUsers'] = $this->users_model->getUsers();
@@ -59,19 +59,23 @@ class Users extends CI_Controller {
     }
 
     public function deleteUser() {
-        $user = $_POST['user'];
-        $safeUser = $_POST['safeUser'];
+        $id = $_POST['id'];
+        $safeInput = $_POST['safeInput'];
 
-        if ($user == $safeUser) {
-            $query = $this->users_model->deleteUser($user);
-            if (!empty($query[0]['avatarurl'])) {
-                unlink(realpath(APPPATH . '../media/avatar') . '/' . $query[0]['avatarurl']);
-                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $query[0]['avatarurl']);
+        $users = $this->users_model->getUsers();
+        
+        for ($i = 0; $i < count($users); $i++) {
+            if ($users[$i]->id == $id && $users[$i]->user == $safeInput) {
+                $query = $this->users_model->deleteUser($safeInput);
+                if (!empty($query[0]['avatarurl'])) {
+                    unlink(realpath(APPPATH . '../media/avatar') . '/' . $query[0]['avatarurl']);
+                    unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $query[0]['avatarurl']);
+                }
+                echo 'ok';
+                return false;
             }
-            echo 'ok';
-        } else {
-            echo 'false';
         }
+        echo 'false';
     }
 
 }

@@ -42,7 +42,7 @@ if (isset($alertMessage)) {
                 <button class="btn btn-sm btn-success" type="submit">Update</button>
             </td>
             <td>
-                <button class="btn btn-sm btn-danger onDeleteUser" data-toggle="modal" data-target="#modal">Delete</button>
+                <button class="btn btn-sm btn-danger onDeleteUser" data-toggle="modal" data-id="<?php echo $user->id; ?>" data-target="#modal">Delete</button>
             </td>
             </form>
         </tr>

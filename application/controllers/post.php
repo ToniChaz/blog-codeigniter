@@ -38,9 +38,33 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
             $this->load->view('adm/adm_footer', $data);
+        }else{
+            show_404();
         }
     }
+    
+    public function viewPost($slug = null){
+        if(empty($slug)){
+            $data['viewPosts'] = $this->post_model->getPosts();            
+        }else{
+            $data['viewPost'] = $this->post_model->getSinglePostSlug($slug);            
+        }
 
+        if (empty($data['viewPosts']) && empty($data['viewPost'])) {
+            show_404();
+        }else if(empty($slug)){
+            $data['title'] = "El blog de la ruta del Gin tonic";
+        }else{
+            $data['title'] = $data['viewPost']->title;
+            $data['description'] = $data['viewPost']->description;
+        }       
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu');
+        $this->load->view('pages/bares', $data);
+        $this->load->view('templates/footer');
+    }
+    
     public function edit($id = null, $message = '') {
         $data['singlePost'] = $this->post_model->getSinglePost($id);
         $data['js'] = 'Main.post();';
@@ -158,7 +182,7 @@ class Post extends CI_Controller {
 
             $this->post_model->createPost($author, $date, $slug, $status);
 
-            $this->edit($this->input->post('id'), 'create');
+            redirect('post');
         }
     }
 

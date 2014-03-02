@@ -1,1 +1,1 @@
-<p>Hello world! This is HTML5 Boilerplate.</p>
+<p>La ruta del gin tonic es un portal que nos habla sobre las especies de Gin y los mejores bares con sus recetas de Gin tonic</p>

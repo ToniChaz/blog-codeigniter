@@ -7,8 +7,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?php echo $title ?></title>
-        <meta name="keywords" content="<?php echo $keywords ?>">
-        <meta name="description" content="<?php echo $description ?>">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="keywords" content="<?php if(isset($keywords)) echo $keywords ?>">
+        <meta name="description" content="<?php if(isset($description)) echo $description ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

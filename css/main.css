@@ -133,6 +133,26 @@ nav.primary a:hover, nav.primary a.active {
 section {
     margin: 50px auto;
 }
+article {
+    margin: 10px 15px;
+}
+article h2 {
+    font-size: 22px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+article a {
+    margin: 10px 0;
+    display: block;
+    color: blue;
+    text-decoration: none;
+}
+article a:hover {
+    text-decoration: underline;
+}
+article p {
+margin: 10px 0;
+}
 /* Footer */
 footer p {
     margin: 15px 15px 0;

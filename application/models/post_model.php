@@ -31,6 +31,16 @@ class Post_model extends CI_Model {
         return $query->row();
     }
     
+    public function getSinglePostSlug($slug) {
+        $this->db->select('*');
+        $this->db->from('posts');
+        $this->db->where('slug', $slug);
+
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+    
     public function createPost($author, $date, $slug, $status) {
         $data = array(
             'author' => $author,

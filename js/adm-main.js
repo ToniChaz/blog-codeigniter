@@ -21,9 +21,10 @@ var Main = {
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | responsivefilemanager",
             image_advtab: true,
             autosave_ask_before_unload: true,
-            external_filemanager_path: "../../plugin/filemanager/",
+            relative_urls:false,
+            external_filemanager_path: Main.ServiceUrl + "plugin/filemanager/",
             filemanager_title: "Responsive Filemanager",
-            external_plugins: {"filemanager": "../filemanager/plugin.min.js"}
+            external_plugins: {"filemanager": Main.ServiceUrl + "plugin/filemanager/plugin.min.js"}
         });
     },
     user: function() {

@@ -32,7 +32,7 @@ if (!empty($allPosts)) {
                         <td><p><?php echo $postItem['date'] ?></p></td>
                         <td><p><?php echo $postItem['author'] ?></p></td>
                         <td><p><?php echo ($postItem['status'] == '1' ? 'Publish' : 'Not publish' ) ?></p></td>
-                        <td><a href="<?php echo 'edit/' . $postItem['id'] ?>" class="btn btn-sm btn-success">Edit</a></td>
+                        <td><a href="<?php echo base_url() . 'post/edit/' . $postItem['id'] ?>" class="btn btn-sm btn-success">Edit</a></td>
                         <td><button class="btn btn-sm btn-danger onDeletePost" data-id="<?php echo $postItem['id'] ?>" data-toggle="modal" data-target="#modal">Delete</button></td>
                         </form>
                     </tr>

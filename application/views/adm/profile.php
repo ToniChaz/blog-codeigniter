@@ -1,7 +1,7 @@
 <?php
 if (isset($alertMessage)) {
     ?>
-    <div class="alert <?php echo $class; ?> alert-dismissable">
+    <div class="alert <?php if (isset($class)) echo $class; ?> alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <?php echo $alertMessage; ?>
     </div>

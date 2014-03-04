@@ -37,8 +37,8 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['bares/(:any)'] = 'post/viewPost/$1';
-$route['bares'] = 'post/viewPost';
+$route['bares/(:any)'] = 'view_post/index/$1';
+$route['bares'] = 'view_post/index';
 $route['post/deletePost'] = 'post/deletePost';
 $route['post/updatePost'] = 'post/updatePost';
 $route['post/createPost'] = 'post/createPost';

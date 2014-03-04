@@ -2,6 +2,10 @@
 
 class Register_model extends CI_Model {
 
+    function __construct() {
+        parent::__construct();
+    }
+
     public function verifyUnicUser($user) {
         $this->db->select('user');
         $this->db->from('users');

@@ -29,12 +29,16 @@ class Profile extends CI_Controller {
     public function checkProfileData() {
         $data = $this->data;
         $data['js'] = 'Main.profile();';
-        
-        if ($_FILES['userfile']['error'] == 0) {
+
+        if (isset($_FILES['userfile']) && $_FILES['userfile']['error'] == 0) {
 
             if (!empty($data['profile']['avatarurl'])) {
-                unlink(realpath(APPPATH . '../media/avatar') . '/' . $data['profile']['avatarurl']);
-                unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $data['profile']['avatarurl']);
+                if (file_exists(realpath(APPPATH . '../media/avatar') . '/' . $data['profile']['avatarurl'])) {
+                    unlink(realpath(APPPATH . '../media/avatar') . '/' . $data['profile']['avatarurl']);
+                }
+                if (file_exists(realpath(APPPATH . '../media/avatar/thumb') . '/' . $data['profile']['avatarurl'])) {
+                    unlink(realpath(APPPATH . '../media/avatar/thumb') . '/' . $data['profile']['avatarurl']);
+                }
             }
 
             $configUpload = array(
@@ -47,7 +51,7 @@ class Profile extends CI_Controller {
             if (!$this->upload->do_upload()) {
                 $data['alertMessage'] = 'Check your avatar';
                 $data['class'] = 'alert-danger';
-                $data['title'] = 'Administrator | Register';                
+                $data['title'] = 'Administrator | Register';
                 $this->load->view('adm/adm_header', $data);
                 $this->load->view('adm/adm_topbar');
                 $this->load->view('adm/profile', $data);
@@ -81,9 +85,11 @@ class Profile extends CI_Controller {
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('surname', 'Surname', 'required');
 
-
         if ($this->form_validation->run() == false) {
-            $data['alertMessage'] = validation_errors();
+
+            if (validation_errors() != false) {
+                $data['alertMessage'] = validation_errors();
+            }
             $data['title'] = 'Administrator | Profile';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');

@@ -46,7 +46,6 @@ class Login extends CI_Controller {
 
     public function verifyUser() {
         $user = $this->input->post('user');
-//        $password = md5($this->input->post('password'));
         $password = $this->input->post('password');
 
         $query = $this->login_model->login($user, $password);

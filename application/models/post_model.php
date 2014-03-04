@@ -2,6 +2,10 @@
 
 class Post_model extends CI_Model {
 
+    function __construct() {
+        parent::__construct();
+    }
+
     public function getPosts($user = null) {
         if (!is_null($user)) {
             $this->db->select('*');

@@ -23,7 +23,7 @@ class Register_model extends CI_Model {
     public function registerUser() {
         $data = array(
             'user' => $this->input->post('user'),
-            'password' => $this->input->post('password'),
+            'password' => md5($this->input->post('password')),
             'role' => $this->input->post('role'),
             'email' => $this->input->post('email'),
             'name' => $this->input->post('name'),

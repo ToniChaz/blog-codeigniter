@@ -80,7 +80,6 @@ class Profile extends CI_Controller {
             }
         }
         $this->form_validation->set_rules('user', 'User', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('surname', 'Surname', 'required');

@@ -4,17 +4,15 @@ class Profile_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        //$this->load->library('encrypt');
     }
 
     public function getProfile($user) {
         $query = $this->db->get_where('users', array('user' => $user));
-
+        
         foreach ($query->result_array() as $row) {
             $profileData = array(
                 'id' => $row['id'],
                 'user' => $row['user'],
-                'password' => $row['password'],
                 'role' => $row['role'],
                 'name' => $row['name'],
                 'surname' => $row['surname'],
@@ -41,12 +39,15 @@ class Profile_model extends CI_Model {
     }
 
     public function updateProfile($user) {
+        
         $data = array(
-            'password' => $this->input->post('password'),
             'email' => $this->input->post('email'),
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname')
-        );
+        );        
+        if (!empty($_POST['password'])) {
+            $data['password'] = md5($this->input->post('password'));
+        }
         if ($_FILES['userfile']['error'] == 0) {
             $data['avatarurl'] = $_FILES['userfile']['name'];
         }
@@ -58,10 +59,13 @@ class Profile_model extends CI_Model {
     }
 
     public function deleteProfile($user, $password) {
+        
+        $encryptPassword = md5($password);
+        
         $this->db->select('user, password');
         $this->db->from('users');
         $this->db->where('user', $user);
-        $this->db->where('password', $password);
+        $this->db->where('password', $encryptPassword);
 
         $query = $this->db->get();
 

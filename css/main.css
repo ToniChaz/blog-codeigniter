@@ -112,21 +112,25 @@ header {
     clear: left;
     margin-left: 136px;
 }
+/* Menu */
 nav.secondary {
     float: right;
 }
-/* Menu */
 nav.primary {
     text-align: center;
     clear: both;
     margin: 20px auto;
 }
-nav.primary a {
+nav.primary a, 
+nav.secondary a {
     text-decoration: none;
     color:#000;
     padding: 5px 10px;
 }
-nav.primary a:hover, nav.primary a.active {
+nav.primary a:hover, 
+nav.primary a.active,
+nav.secondary a:hover, 
+nav.secondary a.active {
     text-decoration: underline;
 }
 /* Section */
@@ -151,9 +155,44 @@ article a:hover {
     text-decoration: underline;
 }
 article p {
-margin: 10px 0;
+    margin: 10px 0;
+}
+/*Content index*/
+.content .col-left {
+    width: 300px;
+    float: left;
+    padding: 15px;
+}
+.content .col-right {
+    width: 720px;
+    float: left;
+    padding: 15px;
+}
+.index-footer {
+    margin-top:10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    clear:both;
+}
+.content .col-left p {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 25px;
+    margin: 25px;
+}
+.index-footer .col {
+    width: 248px;
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border: 1px solid;
+    height: 167px;
 }
 /* Footer */
+footer {
+    clear:both;
+}
 footer p {
     margin: 15px 15px 0;
     padding: 12px;

@@ -8,7 +8,7 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/adm-main.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>plugin/tinymce/skins/lightgray/skin.min.css">
 </head>

@@ -11,13 +11,15 @@ class Post_model extends CI_Model {
             $this->db->select('*');
             $this->db->from('posts');
             $this->db->where('postuser', $user);
-
+            $this->db->order_by("date", "desc"); 
+            
             $query = $this->db->get();
 
             return $query->result_array();
         } else {
             $this->db->select('*');
             $this->db->from('posts');
+            $this->db->order_by("date", "desc"); 
 
             $query = $this->db->get();
 
@@ -81,7 +83,16 @@ class Post_model extends CI_Model {
     public function deletePost($id){
         $this->db->delete('posts', array('id' => $id));
     }
-
+    
+    public function lastPost(){
+        $this->db->select('*');
+        $this->db->from('posts');
+        $query = $this->db->get();
+        
+        $row = $query->last_row();
+        
+        return $row;
+    }
 }
 
 ?>

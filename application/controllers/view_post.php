@@ -30,6 +30,7 @@ class View_post extends CI_Controller {
         $this->load->view('pages/bares', $data);
         $this->load->view('templates/footer');
     }
+    
 }
 
 ?>

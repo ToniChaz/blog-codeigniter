@@ -1,5 +1,5 @@
 <nav class="primary">
-    <a href="<?php echo base_url() ?>inicio">Inicio</a>
+    <a href="<?php echo base_url() ?>">Inicio</a>
     <a href="<?php echo base_url() ?>especialidades">Especialidades</a>
     <a href="<?php echo base_url() ?>rutas">Rutas</a>
     <a href="<?php echo base_url() ?>a-la-carta">A la carta</a>

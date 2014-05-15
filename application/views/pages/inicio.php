@@ -7,18 +7,18 @@
     <div class="col-right">
         <h1><?php echo $lastPost->title; ?></h1>
         <div class="post-detail">
-            <p>Escrito por: <?php echo $lastPost->author; ?></p>
-            <p>Fecha: <?php echo $lastPost->author; ?></p>
-            <p>Precio: <?php echo $lastPost->price; ?></p>
-            <p>Votacion: <?php echo $lastPost->vote; ?></p>            
+            <p><span class="glyphicon glyphicon-user"></span> <?php echo $lastPost->author; ?></p>
+            <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $lastPost->date; ?></p>
+            <p><span class="glyphicon glyphicon-euro"></span> <?php echo $lastPost->price; ?></p>
+            <p><span class="glyphicon glyphicon-star"></span> <?php echo $lastPost->vote; ?></p>            
         </div>
         <div class="post-text"><?php echo $lastPost->text; ?></div>
-        <a href="bares/<?php echo $lastPost->slug; ?>" title="<?php echo $lastPost->title; ?>">Ir al post</a>
+        <a href="bares/<?php echo $lastPost->slug; ?>" title="<?php echo $lastPost->title; ?>">Ir al post <span class="glyphicon glyphicon-forward"></span></a>
     </div>
 </div>
 <div class="index-footer">
     <div class="col">
-        <p>La recete de paquito perez</p>
+        <p>La receta de paquito perez</p>
         <iframe width="230" src="//www.youtube.com/embed/QBafshkmOik" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="col"><p>Consigue tu descuento</p></div>

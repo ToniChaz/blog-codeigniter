@@ -37,6 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['search/search_keyword'] = 'search/search_keyword';
 $route['bares/(:any)'] = 'view_post/index/$1';
 $route['bares'] = 'view_post/index';
 $route['post/deletePost'] = 'post/deletePost';
@@ -58,8 +59,8 @@ $route['register'] = 'register';
 $route['login/checkLogin'] = 'login/checkLogin';
 $route['login'] = 'login';
 $route['adm'] = 'adm';
-$route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = "pages/view";
+$route['(:any)'] = 'pages/index/$1';
+$route['default_controller'] = "pages";
 $route['404_override'] = 'login';
 
 

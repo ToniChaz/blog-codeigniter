@@ -10,7 +10,7 @@ class Pages extends CI_Controller {
         $this->load->model('post_model');
     }
 
-    public function view($page = 'inicio') {
+    public function index($page = 'inicio') {
         if (!file_exists('application/views/pages/' . $page . '.php')) {
             // Whoops, we don't have a page for that!
             show_404();

@@ -3,13 +3,13 @@ if (!empty($viewPosts)) {
     foreach ($viewPosts as $posts) {
         if ($posts['status'] == 1) {
             ?>
-            <article>
-                <div class="hero-unit">
-                    <h2><?php echo $posts['title'] ?></h2>
+            <article class="multi-article">
+                <div>
+                    <h1><?php echo $posts['title'] ?></h1>
                     <div>
                         <?php echo $posts['text'] ?>
                     </div>
-                    <p><a href="<?php echo base_url(); ?>bares/<?php echo $posts['slug'] ?>" class="btn btn-primary">View article</a></p>
+                    <p><a href="<?php echo base_url(); ?>bares/<?php echo $posts['slug'] ?>">Ir al post <span class="glyphicon glyphicon-forward"></a></p>
                 </div>
             </article>
             <?php
@@ -18,19 +18,22 @@ if (!empty($viewPosts)) {
 } else if (!empty($viewPost) && $viewPost->status == 1) {
     ?>
     <article>
-        <div class="hero-unit">
-            <h2><?php echo $viewPost->title ?></h2>
-            <p><?php echo $viewPost->author ?></p>
-            <p><?php echo $viewPost->date ?></p>
-            <p><?php echo $viewPost->price ?></p>
+        <div>
+            <h1><?php echo $viewPost->title ?></h1>
+            <div class="post-detail">
+                <p><span class="glyphicon glyphicon-user"></span> <?php echo $viewPost->author; ?></p>
+                <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $viewPost->date; ?></p>
+                <p><span class="glyphicon glyphicon-euro"></span> <?php echo $viewPost->price; ?></p>
+                <p><span class="glyphicon glyphicon-star"></span> <?php echo $viewPost->vote; ?></p>            
+            </div>
             <div>
                 <?php echo $viewPost->text ?>
             </div>
-            <p><a href="<?php echo base_url(); ?>bares/" class="btn btn-primary">Back</a></p>
+            <p><button type="button" class="back btn"><span class="glyphicon glyphicon-backward"></span> Atras</button></p>
         </div>
     </article>
     <?php
-}else{
+} else {
     show_404();
 }
 ?>

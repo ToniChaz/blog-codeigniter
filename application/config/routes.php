@@ -37,7 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['search/search_keyword'] = 'search/search_keyword';
+$route['search/searchKeyword'] = 'search/searchKeyword';
 $route['bares/(:any)'] = 'view_post/index/$1';
 $route['bares'] = 'view_post/index';
 $route['post/deletePost'] = 'post/deletePost';

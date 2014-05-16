@@ -18,6 +18,7 @@ var Main = {
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table contextmenu paste responsivefilemanager"
             ],
+            entity_encoding : "raw",
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | responsivefilemanager",
             image_advtab: true,
             autosave_ask_before_unload: true,

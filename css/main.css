@@ -118,7 +118,7 @@ h1 {
     margin: 5px auto;
 }
 a {
-    color: #000000;
+    color: #212121;
     text-decoration: none;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -129,7 +129,40 @@ a {
 a:hover {
     color: #6CCB17;
     text-decoration: none;
-    text-shadow: 0px 0px 5px rgba(155, 155, 155, 1);
+    text-shadow: 0px 0px 1px rgba(155, 155, 155, 1);
+}
+.warning {
+    padding: 50px;
+    margin: 50px;
+    background: #dadada;
+    border-radius: 5px;
+    color: #a90329;
+}
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+    border:1px solid #ccc;
+    background: rgb(218,218,218); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RhZGFkYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNGY0ZjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(218,218,218,1) 0%, rgba(244,244,244,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(218,218,218,1)), color-stop(100%,rgba(244,244,244,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(218,218,218,1) 0%,rgba(244,244,244,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(218,218,218,1) 0%,rgba(244,244,244,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(218,218,218,1) 0%,rgba(244,244,244,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(218,218,218,1) 0%,rgba(244,244,244,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadada', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-8 */
+    color: #212121;
+    padding: 5px;
+    margin: 5px auto;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+    outline:none;
 }
 /* ==========================================================================
    Header
@@ -180,7 +213,8 @@ nav.primary {
     text-align: center;
     clear: both;
     margin: 20px auto;
-    padding: 20px;    
+    padding: 20px;
+    border-radius: 3px;
 }
 nav.primary a {
     text-decoration: none;
@@ -204,14 +238,14 @@ nav.secondary a {
 }
 nav.primary a:hover, 
 nav.primary a.active {
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 1);
     text-decoration: none;
     color:#6CCB17;
     padding: 5px 10px;
 }
 nav.secondary a:hover, 
 nav.secondary a.active {
-    text-shadow: 0px 0px 5px rgba(155, 155, 155, 1);
+    text-shadow: 0px 0px 1px rgba(155, 155, 155, 1);
     text-decoration: none;
     color:#6CCB17;
     padding: 5px 10px;
@@ -220,34 +254,25 @@ nav.secondary a.active {
    Article
    ========================================================================== */
 article {
-    margin: 10px 15px;
+    padding: 20px;
+    margin: 25px;
 }
-article h2 {
-    font-size: 22px;
-    margin: 15px 0;
-    font-weight: 600;
-}
-article a {
-    margin: 10px 0;
-    display: block;
-    color: blue;
-    text-decoration: none;
-}
-article a:hover {
-    text-decoration: underline;
+article.multi-article {
+    border-bottom: 1px solid;
+    border-radius: 10px;
 }
 article p {
     margin: 10px 0;
 }
-.post-detail {
-    margin-bottom: 35px;
+article .post-detail {
+    height: 35px;
 }
-.post-detail p {
+article .post-detail p {
     float: left;
     padding: 3px 25px 3px 0px;
     font-size:14px;
 }
-.post-text img {
+article .post-text img {
     margin-bottom: 15px;
 }
 /* ==========================================================================
@@ -287,6 +312,28 @@ article p {
     border-bottom: 1px solid;
     border-radius: 10px;
     height: 167px;
+}
+/* ==========================================================================
+   Search Results
+   ========================================================================== */
+.search-result {
+    margin-bottom: 30px;
+}
+.search-result a{
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+}
+.search-result a span{
+    padding-right: 5px;
+    background: #ccc;
+    color: #fff;
+    border-radius: 50%;
+    padding-left: 5px;
+    margin: 0px 5px;
+}
+.search-result img {
+    display: none!important;
 }
 /* ==========================================================================
    Footer

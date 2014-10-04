@@ -1,9 +1,9 @@
 <?php
-if (isset($alertMessage)) {
+if (isset($alert_message)) {
     ?>
     <div class="alert <?php echo $class; ?> alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $alertMessage; ?>
+        <?php echo $alert_message; ?>
     </div>
 <?php } ?>
 <div class="jumbotron">

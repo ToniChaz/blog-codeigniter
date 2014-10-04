@@ -1,14 +1,14 @@
 <?php
-if (isset($alertMessage)) {
+if (isset($alert_message)) {
     ?>
     <div class="alert <?php if (isset($class)) echo $class; ?> alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $alertMessage; ?>
+        <?php echo $alert_message; ?>
     </div>
     <?php
 }
 $attributes = array('role' => 'form', 'class' => 'form-update');
-echo form_open_multipart(base_url() . 'profile/checkProfileData', $attributes);
+echo form_open_multipart(base_url() . 'profile/check_profile_data', $attributes);
 ?>
 <div class="row">
     <div class="col-md-3">

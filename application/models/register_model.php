@@ -6,7 +6,7 @@ class Register_model extends CI_Model {
         parent::__construct();
     }
 
-    public function verifyUnicUser($user) {
+    public function verify_unic_user($user) {
         $this->db->select('user');
         $this->db->from('users');
         $this->db->where('user', $user);
@@ -20,7 +20,7 @@ class Register_model extends CI_Model {
         }
     }
 
-    public function registerUser() {
+    public function register_user() {
         $data = array(
             'user' => $this->input->post('user'),
             'password' => md5($this->input->post('password')),
@@ -35,5 +35,3 @@ class Register_model extends CI_Model {
     }
 
 }
-
-?>

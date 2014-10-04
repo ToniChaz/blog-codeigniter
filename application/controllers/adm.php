@@ -10,7 +10,7 @@ class Adm extends CI_Controller {
     }
 
     public function index() {
-        if ($this->session->userdata('loginState') == true) {
+        if ($this->session->userdata('login_state') == true) {
             $data['title'] = 'Administrator | Home';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
@@ -25,5 +25,3 @@ class Adm extends CI_Controller {
     }
 
 }
-
-?>

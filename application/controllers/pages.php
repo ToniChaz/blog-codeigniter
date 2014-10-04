@@ -21,7 +21,7 @@ class Pages extends CI_Controller {
         $data['description'] = "La mega descripcion de mundo";
         
         if ($page == 'inicio') {
-            $data['lastPost'] = $this->post_model->lastPost();
+            $data['last_post'] = $this->post_model->last_post();
             $data['title'] = "Rutas de Gin Tonic";
             $data['keywords'] = "Gin Tonic, ruta, bares, ginebra";
         }        
@@ -33,6 +33,3 @@ class Pages extends CI_Controller {
     }
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

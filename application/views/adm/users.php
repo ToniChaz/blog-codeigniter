@@ -1,9 +1,9 @@
 <?php
-if (isset($alertMessage)) {
+if (isset($alert_message)) {
     ?>
     <div class="alert <?php echo $class; ?> alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $alertMessage; ?>
+        <?php echo $alert_message; ?>
     </div>
 <?php } ?>
 <div class="table-responsive">
@@ -21,11 +21,11 @@ if (isset($alertMessage)) {
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($allUsers as $user) { ?>
+        <?php foreach ($all_users as $user) { ?>
         <tr>        
             <?php 
             $attributes = array('role' => 'form', 'id' => 'form' . $user->id);
-            echo form_open_multipart(base_url() . 'users/updateUser', $attributes);
+            echo form_open_multipart(base_url() . 'users/update_user', $attributes);
             ?>
             <td><img src="<?php echo base_url() . "media/avatar/thumb/" . $user->avatarurl ?>" alt="<?php echo $user->name . " " . $user->surname ?> | Avatar" class="img-thumbnail avatar" /></td>
             <td><input class="form-control userName" value="<?php echo $user->user; ?>" name="user" type="text" readonly /></td>

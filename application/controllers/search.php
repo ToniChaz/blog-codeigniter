@@ -7,7 +7,7 @@ Class Search Extends CI_Controller {
         $this->load->model('search_model');
     }
 
-    public function searchKeyword() {
+    public function search_keyword() {
         
         $keyword = $this->input->post('keyword');
         $data['title'] = 'Resultados de busqueda';
@@ -17,9 +17,9 @@ Class Search Extends CI_Controller {
             $trace = explode(" ", $keyword);
             $number = count($trace);
             if ($number == 1) {
-                $data['results'] = $this->search_model->simpleSearch($keyword);
+                $data['results'] = $this->search_model->simple_search($keyword);
             } elseif ($number > 1) {
-                $data['results'] = $this->search_model->multiSearch($keyword);
+                $data['results'] = $this->search_model->multi_search($keyword);
             }
             if (empty($data['results'])) {
                 $data['not_results'] = TRUE;
@@ -40,6 +40,4 @@ Class Search Extends CI_Controller {
     }
 
 }
-
-?>
     

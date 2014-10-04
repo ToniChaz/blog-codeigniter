@@ -6,20 +6,18 @@ class Users_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getUsers() {
+    public function get_users() {
         $query = $this->db->get('users')->result();
         
         return $query;
     }
-    public function updateUser($user, $role){
+    public function update_user($user, $role){
         $this->db->where('user', $user);
         $this->db->update('users', array('role' => $role));
         
         return true;
     }
-    public function deleteUser($user){
+    public function delete_user($user){
         $this->db->delete('users', array('user' => $user));
     }
 }
-
-?>

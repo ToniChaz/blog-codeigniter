@@ -6,7 +6,7 @@ class Post_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getPosts($user = null) {
+    public function get_posts($user = null) {
         if (!is_null($user)) {
             $this->db->select('*');
             $this->db->from('posts');
@@ -27,7 +27,7 @@ class Post_model extends CI_Model {
         }
     }
 
-    public function getSinglePost($id) {
+    public function get_single_post($id) {
         $this->db->select('*');
         $this->db->from('posts');
         $this->db->where('id', $id);
@@ -37,7 +37,7 @@ class Post_model extends CI_Model {
         return $query->row();
     }
     
-    public function getSinglePostSlug($slug) {
+    public function get_single_post_slug($slug) {
         $this->db->select('*');
         $this->db->from('posts');
         $this->db->where('slug', $slug);
@@ -47,10 +47,10 @@ class Post_model extends CI_Model {
         return $query->row();
     }
     
-    public function createPost($author, $date, $slug, $status) {
+    public function create_post($author, $date, $slug, $status) {
         $data = array(
             'author' => $author,
-            'postuser' => $this->session->userdata('activeUser'),
+            'postuser' => $this->session->userdata('active_user'),
             'date' => $date,
             'text' => $this->input->post('text'),
             'title' => $this->input->post('title'),
@@ -63,10 +63,10 @@ class Post_model extends CI_Model {
         $this->db->insert('posts', $data);
     }
     
-    public function updatePost($author, $postuser, $date, $slug, $status) {        
+    public function update_post($author, $post_user, $date, $slug, $status) {        
         $data = array(
             'author' => $author,
-            'postuser' => $postuser,
+            'postuser' => $post_user,
             'date' => $date,
             'text' => $this->input->post('text'),
             'title' => $this->input->post('title'),
@@ -80,11 +80,11 @@ class Post_model extends CI_Model {
         $this->db->update('posts', $data);
     }
     
-    public function deletePost($id){
+    public function delete_post($id){
         $this->db->delete('posts', array('id' => $id));
     }
     
-    public function lastPost(){
+    public function last_post(){
         $this->db->select('*');
         $this->db->from('posts');
         $query = $this->db->get();
@@ -94,5 +94,3 @@ class Post_model extends CI_Model {
         return $row;
     }
 }
-
-?>

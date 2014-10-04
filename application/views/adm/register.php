@@ -5,12 +5,12 @@
         ?>
         <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Oh sheet!</strong> <?php echo $alertMessage; ?>
+            <strong>Oh sheet!</strong> <?php echo $alert_message; ?>
         </div>
         <?php
     }
     $attributes = array('role' => 'form', 'class' => 'form-signin');
-    echo form_open_multipart(base_url() . 'register/checkRegister', $attributes);
+    echo form_open_multipart(base_url() . 'register/check_register', $attributes);
     ?>
     <h2 class="form-signin-heading">Register new user</h2>
     <div class="form-group">

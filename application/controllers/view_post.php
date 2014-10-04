@@ -11,18 +11,18 @@ class View_post extends CI_Controller {
 
     public function index($slug = null) {
         if(empty($slug)){
-            $data['viewPosts'] = $this->post_model->getPosts();            
+            $data['view_posts'] = $this->post_model->get_posts();            
         }else{
-            $data['viewPost'] = $this->post_model->getSinglePostSlug($slug);            
+            $data['view_post'] = $this->post_model->get_single_post_slug($slug);            
         }
 
-        if (empty($data['viewPosts']) && empty($data['viewPost'])) {
+        if (empty($data['view_posts']) && empty($data['view_post'])) {
             show_404();
         }else if(empty($slug)){
             $data['title'] = "El blog de la ruta del Gin tonic";
         }else{
-            $data['title'] = $data['viewPost']->title;
-            $data['description'] = $data['viewPost']->description;
+            $data['title'] = $data['view_post']->title;
+            $data['description'] = $data['view_post']->description;
         }       
         
         $this->load->view('templates/header', $data);
@@ -32,5 +32,3 @@ class View_post extends CI_Controller {
     }
     
 }
-
-?>

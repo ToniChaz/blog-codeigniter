@@ -6,7 +6,7 @@ class Profile_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getProfile($user) {
+    public function get_profile($user) {
         $query = $this->db->get_where('users', array('user' => $user));
         
         foreach ($query->result_array() as $row) {
@@ -24,7 +24,7 @@ class Profile_model extends CI_Model {
         return $profileData;
     }
 
-    public function verifyChangeUser($user) {
+    public function verify_change_user($user) {
         $this->db->select('user');
         $this->db->from('users');
         $this->db->where('user', $user);
@@ -38,7 +38,7 @@ class Profile_model extends CI_Model {
         }
     }
 
-    public function updateProfile($user) {
+    public function update_profile($user) {
         
         $data = array(
             'email' => $this->input->post('email'),
@@ -58,14 +58,14 @@ class Profile_model extends CI_Model {
         $this->db->update('users', $data);
     }
 
-    public function deleteProfile($user, $password) {
+    public function delete_profile($user, $password) {
         
-        $encryptPassword = md5($password);
+        $encrypt_password = md5($password);
         
         $this->db->select('user, password');
         $this->db->from('users');
         $this->db->where('user', $user);
-        $this->db->where('password', $encryptPassword);
+        $this->db->where('password', $encrypt_password);
 
         $query = $this->db->get();
 
@@ -78,5 +78,3 @@ class Profile_model extends CI_Model {
     }
 
 }
-
-?>

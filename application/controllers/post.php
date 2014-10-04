@@ -6,11 +6,11 @@ class Post extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        if ($this->session->userdata('loginState') == true) {
+        if ($this->session->userdata('login_state') == true) {
             $this->load->model('post_model');
             $this->load->model('users_model');
             $this->data = array(
-                'allUsers' => $this->users_model->getUsers()
+                'all_users' => $this->users_model->get_users()
             );
         } else {
             redirect('login');
@@ -20,8 +20,8 @@ class Post extends CI_Controller {
     public function index($filter = null) {
         $data['js'] = 'Main.deletePost();';
 
-        if ($this->session->userdata('role') == 0 && $this->session->userdata('loginState') == true && $filter == 'all') {
-            $data['allPosts'] = $this->post_model->getPosts();
+        if ($this->session->userdata('role') == 0 && $this->session->userdata('login_state') == true && $filter == 'all') {
+            $data['all_posts'] = $this->post_model->get_posts();
 
             $data['title'] = 'Administrator | Posts';
 
@@ -29,10 +29,10 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_topbar');
             $this->load->view('adm/post', $data);
             $this->load->view('adm/adm_footer', $data);
-        } else if ($this->session->userdata('loginState') == true && $filter == null) {
+        } else if ($this->session->userdata('login_state') == true && $filter == null) {
             $data = $this->data;
-            $data['allPosts'] = $this->post_model->getPosts($this->session->userdata('activeUser'));
-            $data['activeNameUser'] = $this->returnActiveUser($data['allUsers']);
+            $data['all_posts'] = $this->post_model->get_posts($this->session->userdata('active_user'));
+            $data['active_name_user'] = $this->return_active_user($data['all_users']);
             $data['title'] = 'Administrator | Posts';
             $this->load->view('adm/adm_header', $data);
             $this->load->view('adm/adm_topbar');
@@ -44,17 +44,17 @@ class Post extends CI_Controller {
     }
     
     public function edit($id = null, $message = '') {
-        $data['singlePost'] = $this->post_model->getSinglePost($id);
+        $data['single_post'] = $this->post_model->get_single_post($id);
         $data['js'] = 'Main.post();';
 
-        if (empty($data['singlePost'])) {
+        if (empty($data['single_post'])) {
             show_404();
         }
         if (!empty($message)) {
             if ($message == 'update') {
-                $data['alertMessage'] = 'Your post has been modified successfully.';
+                $data['alert_message'] = 'Your post has been modified successfully.';
             } else if ($message == 'create') {
-                $data['alertMessage'] = 'Your post was successfully saved.';
+                $data['alert_message'] = 'Your post was successfully saved.';
             }
             $data['class'] = 'alert-success';
         }
@@ -69,7 +69,7 @@ class Post extends CI_Controller {
         $data = $this->data;
         $data['js'] = 'Main.post();';
 
-        $data['createPost'] = $this->returnActiveUser($data['allUsers']);
+        $data['create_post'] = $this->return_active_user($data['all_users']);
 
         $data['title'] = 'Administrator | Create';
         $this->load->view('adm/adm_header', $data);
@@ -78,26 +78,26 @@ class Post extends CI_Controller {
         $this->load->view('adm/adm_footer', $data);
     }
 
-    public function returnActiveUser($allUsers) {
-        foreach ($allUsers as &$valor) {
-            if ($valor->user == $this->session->userdata('activeUser')) {
-                $activeUser = $valor->name . ' ' . $valor->surname;
-                return $activeUser;
+    public function return_active_user($all_users) {
+        foreach ($all_users as &$valor) {
+            if ($valor->user == $this->session->userdata('active_user')) {
+                $active_user = $valor->name . ' ' . $valor->surname;
+                return $active_user;
             }
         }
     }
 
-    public function returnAuthorUser($id) {
-        $currentPost = $this->post_model->getSinglePost($id);
-        return $currentPost->author;
+    public function return_author_user($id) {
+        $current_post = $this->post_model->get_single_post($id);
+        return $current_post->author;
     }
 
-    public function returnPostUser($id) {
-        $currentPost = $this->post_model->getSinglePost($id);
-        return $currentPost->postuser;
+    public function return_post_user($id) {
+        $current_post = $this->post_model->get_single_post($id);
+        return $current_post->postuser;
     }
 
-    public function slugGenerator($str) {
+    public function slug_generator($str) {
         $search = array(
             'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç',
             'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï',
@@ -122,11 +122,11 @@ class Post extends CI_Controller {
             'o', 'u', 'u', 'u', 'u', 'u', 'y', 'th',
             'y', '(c)', '-'
         );
-        $cleanStr = str_ireplace($search, $replace, strtolower(trim($str)));
-        return strtolower($cleanStr);
+        $clean_str = str_ireplace($search, $replace, strtolower(trim($str)));
+        return strtolower($clean_str);
     }
 
-    public function createPost() {
+    public function create_post() {
         $data = $this->data;
         $data['js'] = 'Main.post();';
 
@@ -135,8 +135,8 @@ class Post extends CI_Controller {
         $this->form_validation->set_rules('text', 'Text', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['alertMessage'] = validation_errors();
-            $data['createPost'] = $this->returnActiveUser($data['allUsers']);
+            $data['alert_message'] = validation_errors();
+            $data['create_post'] = $this->return_active_user($data['all_users']);
             $data['class'] = 'alert-danger';
             $data['title'] = 'Administrator | Create';
             $this->load->view('adm/adm_header', $data);
@@ -144,7 +144,7 @@ class Post extends CI_Controller {
             $this->load->view('adm/post', $data);
             $this->load->view('adm/adm_footer', $data);
         } else {
-            $author = $this->returnActiveUser($data['allUsers']);
+            $author = $this->return_active_user($data['all_users']);
 
             if ($this->input->post('date') == '') {
                 $date = date("Y-m-d");
@@ -156,15 +156,15 @@ class Post extends CI_Controller {
             } else {
                 $status = 0;
             }
-            $slug = $this->slugGenerator($this->input->post('slug'));
+            $slug = $this->slug_generator($this->input->post('slug'));
 
-            $this->post_model->createPost($author, $date, $slug, $status);
+            $this->post_model->create_post($author, $date, $slug, $status);
 
             redirect('post');
         }
     }
 
-    public function updatePost() {
+    public function update_post() {
         $data = $this->data;
         $data['js'] = 'Main.post();';
 
@@ -173,11 +173,11 @@ class Post extends CI_Controller {
         $this->form_validation->set_rules('text', 'Text', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['alertMessage'] = validation_errors();
+            $data['alert_message'] = validation_errors();
             if ($this->session->userdata('role') == 0) {
-                $data['createPost'] = $this->returnPostUser($this->input->post('id'));
+                $data['create_post'] = $this->return_post_user($this->input->post('id'));
             } else {
-                $data['createPost'] = $this->returnActiveUser($data['allUsers']);
+                $data['create_post'] = $this->return_active_user($data['all_users']);
             }
             $data['class'] = 'alert-danger';
             $data['title'] = 'Administrator | Edit';
@@ -187,11 +187,11 @@ class Post extends CI_Controller {
             $this->load->view('adm/adm_footer', $data);
         } else {
             if ($this->session->userdata('role') == 0) {
-                $author = $this->returnAuthorUser($this->input->post('id'));
-                $postuser = $this->returnPostUser($this->input->post('id'));
+                $author = $this->return_author_user($this->input->post('id'));
+                $post_user = $this->return_post_user($this->input->post('id'));
             } else {
-                $author = $this->returnActiveUser($data['allUsers']);
-                $postuser = $this->session->userdata('activeUser');
+                $author = $this->return_active_user($data['all_users']);
+                $post_user = $this->session->userdata('active_user');
             }
 
             if ($this->input->post('date') == '') {
@@ -205,22 +205,22 @@ class Post extends CI_Controller {
                 $status = 0;
             }
 
-            $slug = $this->slugGenerator($this->input->post('slug'));
+            $slug = $this->slug_generator($this->input->post('slug'));
 
-            $this->post_model->updatePost($author, $postuser, $date, $slug, $status);
+            $this->post_model->update_post($author, $post_user, $date, $slug, $status);
 
             $this->edit($this->input->post('id'), 'update');
         }
     }
 
-    public function deletePost() {
+    public function delete_post() {
         $id = $_POST['id'];
-        $safeInput = $_POST['safeInput'];
+        $safe_input = $_POST['safe_input'];
 
-        $postToDelete = $this->post_model->getSinglePost($id);
+        $post_to_delete = $this->post_model->get_single_post($id);
 
-        if ($postToDelete->id == $id && $this->session->userdata('activeUser') == $safeInput) {
-            $this->post_model->deletePost($id);
+        if ($post_to_delete->id == $id && $this->session->userdata('active_user') == $safe_input) {
+            $this->post_model->delete_post($id);
             echo 'ok';
         } else {
             echo 'false';
@@ -228,5 +228,3 @@ class Post extends CI_Controller {
     }
 
 }
-
-?>

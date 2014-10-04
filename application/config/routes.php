@@ -37,26 +37,26 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['search/searchKeyword'] = 'search/searchKeyword';
+$route['search/search_keyword'] = 'search/search_keyword';
 $route['bares/(:any)'] = 'view_post/index/$1';
 $route['bares'] = 'view_post/index';
-$route['post/deletePost'] = 'post/deletePost';
-$route['post/updatePost'] = 'post/updatePost';
-$route['post/createPost'] = 'post/createPost';
-$route['post/getPosts'] = 'post/getPosts';
+$route['post/delete_post'] = 'post/delete_post';
+$route['post/update_post'] = 'post/update_post';
+$route['post/create_post'] = 'post/create_post';
+$route['post/get_posts'] = 'post/get_posts';
 $route['post/edit/(:any)'] = 'post/edit/$1';
 $route['post/(:any)'] = 'post/index/$1';
 $route['create'] = 'post/create';
 $route['post'] = 'post';
-$route['users/deleteUser'] = 'users/deleteUser';
-$route['users/updateUser'] = 'users/updateUser';
+$route['users/delete_user'] = 'users/delete_user';
+$route['users/update_user'] = 'users/update_user';
 $route['users'] = 'users';
-$route['profile/deleteProfile'] = 'profile/deleteProfile';
-$route['profile/checkProfileData'] = 'profile/checkProfileData';
+$route['profile/delete_profile'] = 'profile/delete_profile';
+$route['profile/check_profile_data'] = 'profile/check_profile_data';
 $route['profile'] = 'profile';
-$route['register/checkRegister'] = 'register/checkRegister';
+$route['register/check_register'] = 'register/check_register';
 $route['register'] = 'register';
-$route['login/checkLogin'] = 'login/checkLogin';
+$route['login/check_login'] = 'login/check_login';
 $route['login'] = 'login';
 $route['adm'] = 'adm';
 $route['(:any)'] = 'pages/index/$1';

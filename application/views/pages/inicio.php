@@ -6,15 +6,15 @@
     </div>
     <div class="col-right">
         <article>
-            <h1><?php echo $lastPost->title; ?></h1>
+            <h1><?php echo $last_post->title; ?></h1>
             <div class="post-detail">
-                <p><span class="glyphicon glyphicon-user"></span> <?php echo $lastPost->author; ?></p>
-                <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $lastPost->date; ?></p>
-                <p><span class="glyphicon glyphicon-euro"></span> <?php echo $lastPost->price; ?></p>
-                <p><span class="glyphicon glyphicon-star"></span> <?php echo $lastPost->vote; ?></p>            
+                <p><span class="glyphicon glyphicon-user"></span> <?php echo $last_post->author; ?></p>
+                <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $last_post->date; ?></p>
+                <p><span class="glyphicon glyphicon-euro"></span> <?php echo $last_post->price; ?></p>
+                <p><span class="glyphicon glyphicon-star"></span> <?php echo $last_post->vote; ?></p>            
             </div>
-            <div class="post-text"><?php echo $lastPost->text; ?></div>
-            <a href="bares/<?php echo $lastPost->slug; ?>" title="<?php echo $lastPost->title; ?>">Ir al post <span class="glyphicon glyphicon-forward"></span></a>
+            <div class="post-text"><?php echo $last_post->text; ?></div>
+            <a href="bares/<?php echo $last_post->slug; ?>" title="<?php echo $last_post->title; ?>">Ir al post <span class="glyphicon glyphicon-forward"></span></a>
         </article>
     </div>
 </div>

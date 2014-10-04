@@ -31,7 +31,7 @@
             <header>
                 <h1 class="logo"><a href="<?php echo base_url() ?>">La Ruta del Gin Tonic</a></h1>
                 <div class="search">
-                    <form action="<?php echo base_url('search/searchKeyword');?>" method = "post">
+                    <form action="<?php echo base_url('search/search_keyword');?>" method = "post">
                         <input class="search-input" type="text" name="keyword">
                         <button type="submit"><span class="glyphicon glyphicon-search"</span></button>
                     </form>

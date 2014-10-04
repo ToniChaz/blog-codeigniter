@@ -2,15 +2,15 @@
 <div class="col-md-4">
     <?php
     $attributes = array('role' => 'form');
-    echo form_open(base_url() . 'login/checkLogin', $attributes);
-    if (isset($alertMessage)) {
+    echo form_open(base_url() . 'login/check_login', $attributes);
+    if (isset($alert_message)) {
         ?>
         <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Oh sheet!</strong> <?php echo $alertMessage; ?>
+            <strong>Oh sheet!</strong> <?php echo $alert_message; ?>
         </div>
     <?php } ?>
-    <input type="hidden" name="formLogin" value="formLogin">
+    <input type="hidden" name="form_login" value="form_login">
     <h2 class="form-signin-heading">Please sign in</h2>
     <div class="form-group">
         <label for="User">User</label>

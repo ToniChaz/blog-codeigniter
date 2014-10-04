@@ -1,6 +1,6 @@
 <?php
-if (!empty($viewPosts)) {
-    foreach ($viewPosts as $posts) {
+if (!empty($view_posts)) {
+    foreach ($view_posts as $posts) {
         if ($posts['status'] == 1) {
             ?>
             <article class="multi-article">
@@ -15,19 +15,19 @@ if (!empty($viewPosts)) {
             <?php
         }
     }
-} else if (!empty($viewPost) && $viewPost->status == 1) {
+} else if (!empty($view_post) && $view_post->status == 1) {
     ?>
     <article>
         <div>
-            <h1><?php echo $viewPost->title ?></h1>
+            <h1><?php echo $view_post->title ?></h1>
             <div class="post-detail">
-                <p><span class="glyphicon glyphicon-user"></span> <?php echo $viewPost->author; ?></p>
-                <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $viewPost->date; ?></p>
-                <p><span class="glyphicon glyphicon-euro"></span> <?php echo $viewPost->price; ?></p>
-                <p><span class="glyphicon glyphicon-star"></span> <?php echo $viewPost->vote; ?></p>            
+                <p><span class="glyphicon glyphicon-user"></span> <?php echo $view_post->author; ?></p>
+                <p><span class="glyphicon glyphicon-calendar"></span> <?php echo $view_post->date; ?></p>
+                <p><span class="glyphicon glyphicon-euro"></span> <?php echo $view_post->price; ?></p>
+                <p><span class="glyphicon glyphicon-star"></span> <?php echo $view_post->vote; ?></p>            
             </div>
             <div>
-                <?php echo $viewPost->text ?>
+                <?php echo $view_post->text ?>
             </div>
             <p><button type="button" class="back btn"><span class="glyphicon glyphicon-backward"></span> Atras</button></p>
         </div>

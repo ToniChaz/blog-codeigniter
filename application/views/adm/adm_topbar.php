@@ -35,7 +35,7 @@
             </ul>
             <?php
             $attributes = array('role' => 'form', 'class' => 'navbar-form navbar-right');
-            echo form_open(base_url() . 'login/checkLogin', $attributes)
+            echo form_open(base_url() . 'login/check_login', $attributes)
             ?>
             <input type="hidden" name="logout" value="logout">
             <button type="submit" name="submit" class="btn btn-warning">Sign out</button>

@@ -43,7 +43,7 @@ function _onDeleteProfile() {
         type: "button",
         class: "btn btn-danger",
         click: function() {
-            onConfirmDeleteData(id, "profile/deleteProfile");
+            onConfirmDeleteData(id, "profile/delete_profile");
         }
     });
     $("#modalLabel").html("Are you sure you want to delete your profile?");
@@ -58,7 +58,7 @@ function _onDeleteUser() {
         type: "button",
         class: "btn btn-danger",
         click: function() {
-            onConfirmDeleteData(id, "users/deleteUser");
+            onConfirmDeleteData(id, "users/delete_user");
         }
     });
     $("#modalLabel").html("Are you sure you want to delete this user?");
@@ -73,7 +73,7 @@ function _onDeletePost() {
         type: "button",
         class: "btn btn-danger",
         click: function() {
-            onConfirmDeleteData(id, "post/deletePost");
+            onConfirmDeleteData(id, "post/delete_post");
         }
     });
     $("#modalLabel").html("Are you sure you want to delete this post?");
@@ -86,7 +86,7 @@ function onConfirmDeleteData(id, service) {
     $.ajax({
         type: "POST",
         url: Main.ServiceUrl + service,
-        data: "id=" + id + "&safeInput=" + safeInput,
+        data: "id=" + id + "&safe_input=" + safeInput,
         success: function(XMLHttpRequest) {
             if (XMLHttpRequest === "false") {
                 $("#modalErrorP").html("<strong>Oh sheet!</strong> The parameter is incorrect!");
